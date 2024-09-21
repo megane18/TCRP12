@@ -38,6 +38,18 @@ def get_events(db: Session = Depends(get_db)):
         return []
     return events
 
+@router.get("/{id}", response_model=schemas.EventResponse)
+def get_event(id: int, db: Session = Depends(get_db)):
+    # Query the database for the event by ID
+    event = db.query(models.Event).filter(models.Event.id == id).first()
+    
+    if not event:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Event not found")
+    
+    logging.info(f"Fetching event with ID {id}")
+    return event
+
+
 
 @router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_event(id: int, db: Session = Depends(get_db)):
