@@ -65,9 +65,9 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen p-8">
+    <div className="bg-gray-100 min-h-screen p-8 justify-center">
       {/* Dashboard Header */}
-      <h1 className="text-3xl font-bold text-black mb-6">DASHBOARD</h1>
+      <h1 className="text-3xl font-bold text-black mb-6 mt-12">Admin Dashboard</h1>
 
       {/* Stats Overview */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8 text-black">
@@ -90,80 +90,84 @@ const AdminDashboard = () => {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex space-x-4 mb-8">
-        <button className="bg-gray-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-gray-600">
+      <div className="flex justify-center mb-8">
+        {/* <button className="bg-gray-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-gray-600">
           + Create New Events
-        </button>
+        </button> */}
         <button className="bg-gray-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-gray-600">
           + Send Mass Communication
         </button>
       </div>
 
       {/* Event Input Section */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold text-black mb-4">Add New Event</h2>
-        <div className="bg-white p-6 shadow-md rounded-lg">
-          <input
-            type="text"
-            name="name"
-            value={newEvent.name}
-            onChange={handleInputChange}
-            placeholder="Enter event name"
-            className="border border-gray-300 p-2 rounded-lg w-full mb-4"
-          />
-          <input
-            type="text"
-            name="type"
-            value={newEvent.type}
-            onChange={handleInputChange}
-            placeholder="Enter event type (e.g., meeting, conference)"
-            className="border border-gray-300 p-2 rounded-lg w-full mb-4"
-          />
-          <input
-            type="text"
-            name="description"
-            value={newEvent.description}
-            onChange={handleInputChange}
-            placeholder="Enter event description"
-            className="border border-gray-300 p-2 rounded-lg w-full mb-4"
-          />
-          <input
-            type="datetime-local"
-            name="start_date"
-            value={newEvent.start_date}
-            onChange={handleInputChange}
-            className="border border-gray-300 p-2 rounded-lg w-full mb-4"
-          />
-          <button
-            onClick={handleAddEvent}
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg">
-            Add Event
-          </button>
+      <div className="mb-8 flex justify-center">
+        <div className="w-1/2 text-black">
+            <h2 className="text-2xl font-bold text-black mb-4">Add New Event</h2>
+            <div className="bg-white p-6 shadow-md rounded-lg">
+            <input
+                type="text"
+                name="name"
+                value={newEvent.name}
+                onChange={handleInputChange}
+                placeholder="Enter event name"
+                className="border border-gray-300 p-2 rounded-lg w-full mb-4 bg-gray-100"
+            />
+            <input
+                type="text"
+                name="type"
+                value={newEvent.type}
+                onChange={handleInputChange}
+                placeholder="Enter event type (e.g., meeting, conference)"
+                className="border border-gray-300 p-2 rounded-lg w-full mb-4 bg-gray-100"
+            />
+            <input
+                type="text"
+                name="description"
+                value={newEvent.description}
+                onChange={handleInputChange}
+                placeholder="Enter event description"
+                className="border border-gray-300 p-2 rounded-lg w-full mb-4 bg-gray-100"
+            />
+            <input
+                type="datetime-local"
+                name="start_date"
+                value={newEvent.start_date}
+                onChange={handleInputChange}
+                className="border border-gray-300 p-2 rounded-lg w-full mb-4 bg-gray-100 text-gray-400"
+            />
+            <button
+                onClick={handleAddEvent}
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+                Add Event
+            </button>
+            </div>
         </div>
       </div>
 
       {/* Upcoming Events Section */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold text-black mb-4">Upcoming Events</h2>
-        {events.length > 0 ? (
-          <ul className="space-y-4">
-            {events.map((event) => (
-              <li key={event.id} className="bg-white p-6 shadow-md rounded-lg text-black">
-                <strong>{event.name}</strong><br />
-                <em>Type:</em> {event.type}<br />
-                <em>Description:</em> {event.description}<br />
-                <em>Start Date:</em> {new Date(event.start_date).toLocaleString()}<br />
-                <button
-                  onClick={() => handleRemoveEvent(event.id)}
-                  className="bg-red-500 text-white px-4 py-2 rounded-lg mt-2">
-                  Remove
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-gray-600">No upcoming events</p>
-        )}
+      <div className="mb-8 flex justify-center">
+        <div className="w-2/3">
+          <h2 className="text-2xl font-bold text-black mb-4">Upcoming Events</h2>
+          {events.length > 0 ? (
+            <ul className="space-y-4">
+              {events.map((event) => (
+                <li key={event.id} className="bg-white p-6 shadow-md rounded-lg text-black">
+                  <strong>{event.name}</strong><br />
+                  <em>Type:</em> {event.type}<br />
+                  <em>Description:</em> {event.description}<br />
+                  <em>Start Date:</em> {new Date(event.start_date).toLocaleString()}<br />
+                  <button
+                    onClick={() => handleRemoveEvent(event.id)}
+                    className="bg-red-500 text-white px-4 py-2 rounded-lg mt-2">
+                    Remove
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-gray-600">No upcoming events</p>
+          )}
+        </div>
       </div>
 
       {/* Pending Requests Section */}
