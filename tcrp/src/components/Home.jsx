@@ -6,7 +6,7 @@ const CRPHomePage = () => {
   return (
     <div className="bg-gradient-to-b from-blue-50 to-purple-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 pb-4">
-        <header className="flex justify-between items-center py-6">
+        {/* <header className="flex justify-between items-center py-6">
           <div className="flex items-center">
             <img src="/api/placeholder/40/40" alt="CRP Logo" className="w-12 h-12 mr-3" />
             <span className="text-2xl font-bold text-blue-600">CRP</span>
@@ -22,9 +22,9 @@ const CRPHomePage = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-        </header>
+        </header> */}
 
-        <main className="py-12">
+        <main className="py-12 mt-12">
           <section className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-800">Community Restoration Project</h1>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Empowering communities, restoring hope, and building a brighter future together.</p>

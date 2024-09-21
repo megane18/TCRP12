@@ -13,8 +13,17 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 bg-white shadow-md z-30">
       <div className="container mx-auto flex justify-between items-center p-0">
-        <img className="w-40" src={logo} alt="CRP Logo" />
-        <div className="relative">
+        <Link to ="/">
+            <img className="w-40" src={logo} alt="CRP Logo" />
+        </Link>
+        <div className="relative flex items-center">
+            <nav className="hidden md:flex space-x-6 me-4">
+                <a href="#" className="text-gray-600 hover:text-blue-600">Home</a>
+                <a href="#" className="text-gray-600 hover:text-blue-600">About</a>
+                <a href="#" className="text-gray-600 hover:text-blue-600">Events</a>
+                <a href="#" className="text-gray-600 hover:text-blue-600">Contact</a>
+            </nav>
+
           <button 
             onClick={toggleMenu} 
             className="MenuButton focus:outline-none bg-gray-100 border-2 border-gray-100 hover:border-gray-200 rounded-md p-2"
