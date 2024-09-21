@@ -6,7 +6,6 @@ import SendMassCommunication from "./components/SendMassCommunication.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    {/* <App /> */}
-    <SendMassCommunication />
+    <App />
   </StrictMode>
 );
