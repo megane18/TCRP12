@@ -21,7 +21,13 @@ const EventManager = () => {
   const fetchEvents = async () => {
     try {
       const response = await axios.get('http://127.0.0.1:8000/events');
-      setEvents(response.data);
+      
+      if (response.data.length === 0) {
+        setEvents([]);  // Handle case where no events are found
+        
+      } else {
+        setEvents(response.data);
+      }
     } catch (error) {
       console.error("Error fetching events:", error);
     }
@@ -102,6 +108,7 @@ const EventManager = () => {
       </div>
 
       <h2>Events</h2>
+        
       <ul className={styles.eventList}>
         {events.map((event) => (
           <li key={event.id} className={styles.eventItem}>

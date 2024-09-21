@@ -19,7 +19,7 @@ def create_event(event: schemas.EventCreate, db: Session = Depends(get_db)):
     new_event = models.Event(
         name=event.name,
         type=event.type,
-        descrption=event.description,
+        description=event.description,
         start_date=event.start_date
     )
     db.add(new_event)
@@ -34,7 +34,7 @@ def get_events(db: Session = Depends(get_db)):
     logging.info(f"Fetching {len(events)} events from the database")
     
     if not events:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No events found")
+        return []
     return events
 
 
