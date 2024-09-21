@@ -35,6 +35,7 @@ import Login from "./components/Login"; // Adjust this import as needed
 import Header from "./components/Header";
 import Dashboard from "./components/Dashboard";
 import AdminDashboard from "./components/AdminDashboard";
+import RequestForm from "./components/RequestForm";
 import SendMassCommunication from "./components/SendMassCommunication";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
@@ -71,6 +72,7 @@ const App = () => {
               path="/send-mass-communication"
               element={<SendMassCommunication />}
             />
+            <Route path="/request-form" element={<RequestForm />} />
             <Route path="footer" element={<Footer />} />
           </Routes>
         </div>
