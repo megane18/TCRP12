@@ -3,7 +3,7 @@ import React from 'react';
 
 const SignUpForm = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white p-4">
+    <div className="flex flex-col items-center min-h-screen bg-white p-4 pt-32">
       <div className="w-full max-w-md">
         <h1 className="text-3xl font-bold mb-8 text-center text-black">Sign up</h1>
         
@@ -15,18 +15,18 @@ const SignUpForm = () => {
             <input
               type="email"
               id="email"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-300"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-200 text-black"
             />
           </div>
           
           <div className="relative">
-            <label htmlFor="password" className="flex text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="password" className="flex text-sm font-medium text-black mb-1">
               Password
             </label>
             <input
               type="password"
               id="password"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-300"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-200"
             />
             {/* <Eye className="absolute right-3 top-8 text-gray-400" size={20} /> */}
           </div>
