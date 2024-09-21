@@ -1,30 +1,15 @@
 import React from 'react';
 import { ArrowRight, Heart, Users, Home } from 'lucide-react';
 import { FaInstagram, FaYoutube, FaLinkedin, FaFacebook } from 'react-icons/fa';
+import Footer from './Footer';
+
 
 const CRPHomePage = () => {
   return (
     <div className="bg-gradient-to-b from-blue-50 to-purple-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 pb-4">
-        <header className="flex justify-between items-center py-6">
-          <div className="flex items-center">
-            <img src="/api/placeholder/40/40" alt="CRP Logo" className="w-12 h-12 mr-3" />
-            <span className="text-2xl font-bold text-blue-600">CRP</span>
-          </div>
-          <nav className="hidden md:flex space-x-6">
-            <a href="#" className="text-gray-600 hover:text-blue-600">Home</a>
-            <a href="#" className="text-gray-600 hover:text-blue-600">About</a>
-            <a href="#" className="text-gray-600 hover:text-blue-600">Events</a>
-            <a href="#" className="text-gray-600 hover:text-blue-600">Contact</a>
-          </nav>
-          <button className="md:hidden">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </header>
 
-        <main className="py-12">
+        <main className="py-12 mt-12">
           <section className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-800">Community Restoration Project</h1>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Empowering communities, restoring hope, and building a brighter future together.</p>
@@ -86,39 +71,6 @@ const CRPHomePage = () => {
             </div>
           </section>
         </main>
-
-        <footer className="bg-gray-800 text-white p-8 rounded-lg">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4">Quick Links</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-blue-300 transition duration-300">Home</a></li>
-                <li><a href="#" className="hover:text-blue-300 transition duration-300">About Us</a></li>
-                <li><a href="#" className="hover:text-blue-300 transition duration-300">Projects</a></li>
-                <li><a href="#" className="hover:text-blue-300 transition duration-300">Volunteer</a></li>
-                <li><a href="#" className="hover:text-blue-300 transition duration-300">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-              <p>(404) 207-8517</p>
-              <p>3726 East Main Street</p>
-              <p>College Park, GA 30337</p>
-              <p>P.O. Box 211, Fairburn, GA 30213</p>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
-              <div className="flex space-x-4 text-2xl mb-4">
-                <a href="#" className="hover:text-blue-300 transition duration-300"><FaFacebook /></a>
-                <a href="#" className="hover:text-blue-300 transition duration-300"><FaInstagram /></a>
-                <a href="#" className="hover:text-blue-300 transition duration-300"><FaYoutube /></a>
-                <a href="#" className="hover:text-blue-300 transition duration-300"><FaLinkedin /></a>
-              </div>
-              <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300 text-lg font-semibold w-full mb-2">Donate</button>
-              <button className="bg-transparent border-2 border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-gray-800 transition duration-300 text-lg font-semibold w-full">Report an issue</button>
-            </div>
-          </div>
-        </footer>
       </div>
     </div>
   );

@@ -1,66 +1,23 @@
-// import React from 'react';
-// // import EventManager from './components/EventManager';
-// import './App.css';
-// import SignUpForm from './components/SignUpForm';
-// import Login from './components/Login'
-// import Header from './components/Header';
-// import { BrowserRouter as Router } from 'react-router-dom';
-// import React from 'react';
-// import EventManager from './components/EventManager';
-// import './App.css';
-// import SignUpForm from './components/SignUpForm';
-// import Header from './components/Header';
-// import EventDetails from './components/EventDetails';
-// import Footer from './components/Footer';
 
-// const App = () => {
-//   return (
-//     <Router>
-//       <div className="flex flex-col min-h-screen w-full">
-//         <Header />
-//         <div className="content flex-grow">
-//           <SignUpForm />
-//           <Login />
-//         </div>
-//       </div>
-//     </Router>
-//   );
-// };
-
-// export default App;
-
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import SignUpForm from "./components/SignUpForm";
-import Login from "./components/Login"; // Adjust this import as needed
-import Header from "./components/Header";
-import Dashboard from "./components/Dashboard";
-import AdminDashboard from "./components/AdminDashboard";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import SignUpForm from './components/SignUpForm';
+import Login from './components/Login'; // Adjust this import as needed
+import Header from './components/Header';
+import Dashboard from './components/Dashboard';
+import AdminDashboard from './components/AdminDashboard';
 import RequestForm from "./components/RequestForm";
 import SendMassCommunication from "./components/SendMassCommunication";
-import Footer from "./components/Footer";
-import Home from "./components/Home";
-import "./App.css";
+import Footer from './components/Footer';
+import Home from './components/Home'
+import './App.css';
+import React, { useRef } from 'react';
 
 const App = () => {
-  //   return (
-  //     <div className="flex flex-col min-h-screen w-full">
-  //       <Header />
-  //       <div className="content flex-grow bg-white">
-  //         {/* <EventManager /> */}
-  //         <EventDetails eventId={1} />
-
-  //         {/* <SignUpForm /> */}
-
-  //       </div>
-  //       <Footer />
-  //     </div>
-  //   );
-  // }
-
+  const footerRef = useRef(null);
   return (
     <Router>
       <div className="flex flex-col min-h-screen w-full">
-        <Header />
+        <Header footerRef={footerRef} />
         <div className="content flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -76,6 +33,7 @@ const App = () => {
             <Route path="footer" element={<Footer />} />
           </Routes>
         </div>
+        <Footer footerRef={footerRef} />
       </div>
     </Router>
   );

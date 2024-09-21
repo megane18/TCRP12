@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
+
 
 import { FaInstagram, FaYoutube, FaLinkedin, FaFacebook } from 'react-icons/fa'; // For social media icons
 
-const Footer = () => {
+const Footer = ({ footerRef }) => {
   return (
-    <footer className="bg-purple-900 text-white p-6 md:pr-28 md:pl-28 md:pt-6 md:pb-3">
+    <footer footer ref={footerRef} className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-6 md:pr-28 md:pl-28 md:pt-6 md:pb-3">
       <div className="flex flex-col md:flex-row md:justify-between md:items-start space-y-6 md:space-y-0">
         {/* Contact Information */}
         <div className='md:text-left'>

@@ -45,3 +45,12 @@ class EventResponse(BaseModel):
 
     class Config:
         orm_mode = True
+
+class GetChat(BaseModel):
+    message: str
+
+class ChatResponse(BaseModel):
+    message: str
+
+    class Config:
+        orm_mode = True
