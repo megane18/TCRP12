@@ -52,7 +52,7 @@ const RequestForm = () => {
   return (
     <div className=" flex flex-col h-screen w-screen bg-gradient-to-b from-blue-50 to-purple-50 min-h-screen">
       <Header />
-      <div className="mt-28 mx-2 flex-grow rounded-xl p-4 flex flex-col overflow-auto gap-4">
+      <div className="mt-28 mx-2 rounded-xl p-4 flex flex-col overflow-auto gap-4">
         <form onSubmit={handleSubmit} className="flex flex-col w-full gap-5">
           <div className="text-black flex flex-col text-start">
             <h2 className="font-bold text-3xl">Request Form</h2>
@@ -127,97 +127,6 @@ const RequestForm = () => {
             </button>
           </div>
         </form>
-        <footer className="bg-gray-800 text-white p-8 rounded-lg">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4">Quick Links</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-blue-300 transition duration-300"
-                  >
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-blue-300 transition duration-300"
-                  >
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-blue-300 transition duration-300"
-                  >
-                    Projects
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-blue-300 transition duration-300"
-                  >
-                    Volunteer
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-blue-300 transition duration-300"
-                  >
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-              <p>(404) 207-8517</p>
-              <p>3726 East Main Street</p>
-              <p>College Park, GA 30337</p>
-              <p>P.O. Box 211, Fairburn, GA 30213</p>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
-              <div className="flex space-x-4 text-2xl mb-4">
-                <a
-                  href="#"
-                  className="hover:text-blue-300 transition duration-300"
-                >
-                  <FaFacebook />
-                </a>
-                <a
-                  href="#"
-                  className="hover:text-blue-300 transition duration-300"
-                >
-                  <FaInstagram />
-                </a>
-                <a
-                  href="#"
-                  className="hover:text-blue-300 transition duration-300"
-                >
-                  <FaYoutube />
-                </a>
-                <a
-                  href="#"
-                  className="hover:text-blue-300 transition duration-300"
-                >
-                  <FaLinkedin />
-                </a>
-              </div>
-              <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300 text-lg font-semibold w-full mb-2">
-                Donate
-              </button>
-              <button className="bg-transparent border-2 border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-gray-800 transition duration-300 text-lg font-semibold w-full">
-                Report an issue
-              </button>
-            </div>
-          </div>
-        </footer>
       </div>
     </div>
   );
