@@ -14,18 +14,38 @@ const SendMassCommunication = () => {
   const [title, setTitle] = useState("");
   const [recipientGroup, setRecipientGroup] = useState("allMembers");
   const [selectedEvent, setSelectedEvent] = useState("All Events");
-  const [channel, setChannel] = useState("emailChannel");
+  const [channel, setChannel] = useState([]);
   const [file, setFile] = useState(null);
   const [scheduleDate, setScheduleDate] = useState(new Date());
 
   const options = ["All Events", "Volunteer Day", "H.A.N.D.S"];
-  const defaultOption = options[0];
+  const groups = ["All Members", "New Members", "Event Attendees"];
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent page refresh
+    event.preventDefault();
+    if (!title) {
+      alert("Title is missing");
+      return;
+    } else if (!convertedText) {
+      alert("Message is missing");
+      return;
+    } else if (!recipientGroup) {
+      alert("Please select a recipient group");
+      return;
+    } else if (
+      recipientGroup === "eventAttendees" &&
+      selectedEvent === "All Events"
+    ) {
+      alert("Please select an event");
+      return;
+    } else if (!channel) {
+      alert("Please select a channel");
+      return;
+    }
+
     const formData = {
       title,
       message: convertedText,
@@ -83,46 +103,37 @@ const SendMassCommunication = () => {
             <div className="bg-white w-full rounded-md flex p-2 flex-row justify-between">
               <div className="flex flex-col">
                 <h3 className="text-black text-start">Groups</h3>
-                <div className="flex flex-col">
-                  <div className="flex items-center mb-2">
-                    <input
-                      type="radio"
-                      name="groups"
-                      id="allMembers"
-                      value="allMembers"
-                      checked={recipientGroup === "allMembers"}
-                      onChange={(e) => setRecipientGroup(e.target.value)}
-                    />
-                    <label htmlFor="allMembers" className="text-black ml-2">
-                      All Members
-                    </label>
-                  </div>
-                  <div className="flex items-center mb-2">
-                    <input
-                      type="radio"
-                      name="groups"
-                      id="newMembers"
-                      value="newMembers"
-                      checked={recipientGroup === "newMembers"}
-                      onChange={(e) => setRecipientGroup(e.target.value)}
-                    />
-                    <label htmlFor="newMembers" className="text-black ml-2">
-                      New Members
-                    </label>
-                  </div>
-                  <div className="flex items-center mb-2">
-                    <input
-                      type="radio"
-                      name="groups"
-                      id="eventAttendees"
-                      value="eventAttendees"
-                      checked={recipientGroup === "eventAttendees"}
-                      onChange={(e) => setRecipientGroup(e.target.value)}
-                    />
-                    <label htmlFor="eventAttendees" className="text-black ml-2">
-                      Event Attendees
-                    </label>
-                  </div>
+                <div className="flex flex-col gap-1">
+                  {groups.map((group) => {
+                    return (
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          name="groups"
+                          id={group}
+                          value={group}
+                          checked={recipientGroup === group}
+                          onChange={(e) => setRecipientGroup(e.target.value)}
+                          className="hidden" // Hide the default radio button
+                        />
+                        <label
+                          htmlFor={group}
+                          className={`flex items-center cursor-pointer ml-2 ${
+                            recipientGroup === group
+                              ? "text-blue-600"
+                              : "text-black"
+                          }`}
+                        >
+                          <span className="w-4 h-4 border-2 border-blue-600 rounded-full flex items-center justify-center mr-2">
+                            {recipientGroup === group && (
+                              <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
+                            )}
+                          </span>
+                          {group}
+                        </label>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
               <div>
@@ -140,36 +151,75 @@ const SendMassCommunication = () => {
           <div>
             <p className="text-start text-gray-500">Channel Selection</p>
             <div className="bg-white w-full rounded-md flex p-2 flex-row justify-between">
-              <div className="flex gap-4">
+              <div className="flex gap-4 ">
                 <div className="flex items-center">
                   <input
-                    type="radio"
-                    name="channel"
+                    type="checkbox"
                     id="emailChannel"
-                    value="emailChannel"
-                    checked={channel === "emailChannel"}
-                    onChange={(e) => setChannel(e.target.value)}
+                    checked={channel.includes("emailChannel")}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setChannel((prev) => [...prev, "emailChannel"]);
+                      } else {
+                        setChannel((prev) =>
+                          prev.filter((c) => c !== "emailChannel")
+                        );
+                      }
+                    }}
+                    className="hidden" // Hide the default checkbox
                   />
-                  <label htmlFor="emailChannel" className="text-black ml-2">
+                  <label
+                    htmlFor="emailChannel"
+                    className={`flex items-center cursor-pointer ml-2 ${
+                      channel.includes("emailChannel")
+                        ? "text-blue-600"
+                        : "text-black"
+                    }`}
+                  >
+                    <span className="w-4 h-4 border-2 border-blue-600 rounded flex items-center justify-center mr-2">
+                      {channel.includes("emailChannel") && (
+                        <span className="w-2 h-2 bg-blue-600 rounded"></span>
+                      )}
+                    </span>
                     Email
                   </label>
                 </div>
                 <div className="flex items-center">
                   <input
-                    type="radio"
-                    name="channel"
+                    type="checkbox"
                     id="smsChannel"
-                    value="smsChannel"
-                    checked={channel === "smsChannel"}
-                    onChange={(e) => setChannel(e.target.value)}
+                    checked={channel.includes("smsChannel")}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setChannel((prev) => [...prev, "smsChannel"]);
+                      } else {
+                        setChannel((prev) =>
+                          prev.filter((c) => c !== "smsChannel")
+                        );
+                      }
+                    }}
+                    className="hidden"
                   />
-                  <label htmlFor="smsChannel" className="text-black ml-2">
+                  <label
+                    htmlFor="smsChannel"
+                    className={`flex items-center cursor-pointer ml-2 ${
+                      channel.includes("smsChannel")
+                        ? "text-blue-600"
+                        : "text-black"
+                    }`}
+                  >
+                    <span className="w-4 h-4 border-2 border-blue-600 rounded flex items-center justify-center mr-2">
+                      {channel.includes("smsChannel") && (
+                        <span className="w-2 h-2 bg-blue-600 rounded"></span>
+                      )}
+                    </span>
                     SMS
                   </label>
                 </div>
               </div>
             </div>
           </div>
+
           <div className="flex flex-row gap-2 mt-4">
             <div className="justify-start flex">
               <button
