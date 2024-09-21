@@ -2,25 +2,49 @@ import React, { useState, useEffect } from 'react';
 import { dbService } from '../services/DatabaseService';
 
 export default function DatabaseTest() {
-  const [testResult, setTestResult] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [newUserName, setNewUserName] = useState('');
   const [error, setError] = useState('');
 
   useEffect(() => {
-    async function testDatabase() {
+    async function loadUsers() {
       try {
         await dbService.init();
         await dbService.query('CREATE TABLE IF NOT EXISTS test_table (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)');
-        await dbService.query('INSERT INTO test_table (name) VALUES (?)', [`Test User ${new Date().toISOString()}`]);
         const result = await dbService.query('SELECT * FROM test_table');
-        setTestResult(result[0]);
+        setUsers(result[0] ? result[0].values : []);
       } catch (err) {
-        console.error('Database test failed:', err);
+        console.error('Failed to load users:', err);
         setError(err.message);
       }
     }
 
-    testDatabase();
+    loadUsers();
   }, []);
+
+  const addUser = async () => {
+    if (!newUserName.trim()) return;
+    try {
+      await dbService.query('INSERT INTO test_table (name) VALUES (?)', [newUserName]);
+      const result = await dbService.query('SELECT * FROM test_table');
+      setUsers(result[0].values);
+      setNewUserName(''); // Clear input
+    } catch (err) {
+      console.error('Failed to add user:', err);
+      setError(err.message);
+    }
+  };
+
+  const removeUser = async (id) => {
+    try {
+      await dbService.query('DELETE FROM test_table WHERE id = ?', [id]);
+      const result = await dbService.query('SELECT * FROM test_table');
+      setUsers(result[0].values);
+    } catch (err) {
+      console.error('Failed to remove user:', err);
+      setError(err.message);
+    }
+  };
 
   const tableStyle = {
     borderCollapse: 'collapse',
@@ -38,7 +62,7 @@ export default function DatabaseTest() {
 
   const headerCellStyle = {
     ...cellStyle,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#1a1a1a',
     fontWeight: 'bold',
   };
 
@@ -47,27 +71,36 @@ export default function DatabaseTest() {
       <h2>Database Test Result</h2>
       {error ? (
         <p style={{ color: 'red' }}>Error: {error}</p>
-      ) : testResult ? (
-        <table style={tableStyle}>
-          <thead>
-            <tr>
-              {testResult.columns.map((column, index) => (
-                <th key={index} style={headerCellStyle}>{column}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {testResult.values.map((row, rowIndex) => (
-              <tr key={rowIndex}>
-                {row.map((cell, cellIndex) => (
-                  <td key={cellIndex} style={cellStyle}>{cell}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
       ) : (
-        <p>Loading...</p>
+        <>
+          <input
+            type="text"
+            placeholder="Enter new user name"
+            value={newUserName}
+            onChange={(e) => setNewUserName(e.target.value)}
+          />
+          <button onClick={addUser}>Add User</button>
+          <table style={tableStyle}>
+            <thead>
+              <tr>
+                <th style={headerCellStyle}>ID</th>
+                <th style={headerCellStyle}>Name</th>
+                <th style={headerCellStyle}>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((row, rowIndex) => (
+                <tr key={rowIndex}>
+                  <td style={cellStyle}>{row[0]}</td>
+                  <td style={cellStyle}>{row[1]}</td>
+                  <td style={cellStyle}>
+                    <button onClick={() => removeUser(row[0])}>Remove</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
       )}
     </div>
   );
