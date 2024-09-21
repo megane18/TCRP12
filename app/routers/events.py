@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from .. import models, schemas
 from ..database import get_db
 import logging
+from typing import List
 
 router = APIRouter(
     prefix="/events",
@@ -28,7 +29,7 @@ def create_event(event: schemas.EventCreate, db: Session = Depends(get_db)):
     logging.info(f"Event created with ID: {new_event.id}")
     return new_event
 
-@router.get("/", response_model=list[schemas.EventResponse])
+@router.get("/", response_model=List[schemas.EventResponse])
 def get_events(db: Session = Depends(get_db)):
     events = db.query(models.Event).all()
     logging.info(f"Fetching {len(events)} events from the database")
