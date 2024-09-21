@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Menu } from 'lucide-react';
-import logo from '../assets/crp_logo.webp';
+// import logo from '../assets/crp_logo.webp';
+import logo from '../assets/crp_logo_words.png';
 
 
 const Header = () => {
@@ -13,9 +14,9 @@ const Header = () => {
   return (
     <header className="bg-white text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <img className='w-20'src={logo}></img>
+        <img className='w-40'src={logo}></img>
         <div className="relative">
-          <button onClick={toggleMenu} className="MenuButton focus:outline-none bg-blue-100">
+          <button onClick={toggleMenu} className="MenuButton focus:outline-none bg-gray-100 border-2 border-gray-100 hover:border-gray-100">
             <Menu className='bg-gray'size={24} />
           </button>
           {isMenuOpen && (

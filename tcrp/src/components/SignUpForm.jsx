@@ -24,10 +24,16 @@ const SignUpForm = () => {
               Password
             </label>
             <input
-              type="password"
-              id="password"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-200"
-            />
+                type="password"
+                placeholder=""
+                className="w-full px-3 py-2 text-black placeholder-gray-500 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-200"
+                style={{
+                  fontFamily: 'Verdana, sans-serif',
+                  WebkitTextSecurity: 'disc',
+                  MozTextSecurity: 'disc',
+                  textSecurity: 'disc',
+                }}
+              />
             {/* <Eye className="absolute right-3 top-8 text-gray-400" size={20} /> */}
           </div>
           
