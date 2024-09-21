@@ -28,14 +28,20 @@ class Token(BaseModel):
 
 
 # EVENTS
-class EventBase(BaseModel):
+class EventCreate(BaseModel):
     name: str
+    type: str
+    description: str
+    start_date: datetime
 
-class EventCreate(EventBase):
-    pass
-
-class EventResponse(EventBase):
+# Schema for responding with event data
+class EventResponse(BaseModel):
     id: int
+    name: str
+    type: str
+    description: str
+    add_date: datetime
+    start_date: datetime
 
     class Config:
         orm_mode = True

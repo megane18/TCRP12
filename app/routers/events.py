@@ -16,7 +16,12 @@ logging.basicConfig(level=logging.INFO)
 def create_event(event: schemas.EventCreate, db: Session = Depends(get_db)):
     logging.info(f"Creating a new event with name: {event.name}")
     
-    new_event = models.Event(name=event.name)
+    new_event = models.Event(
+        name=event.name,
+        type=event.type,
+        descrption=event.description,
+        start_date=event.start_date
+    )
     db.add(new_event)
     db.commit()
     db.refresh(new_event)

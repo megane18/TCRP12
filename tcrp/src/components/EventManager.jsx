@@ -4,12 +4,20 @@ import styles from './EventManager.module.css';
 
 const EventManager = () => {
   const [events, setEvents] = useState([]);
-  const [newEvent, setNewEvent] = useState("");
+  
+  // Expanded state to include the new event fields
+  const [newEvent, setNewEvent] = useState({
+    name: "",
+    type: "",
+    description: "",
+    start_date: ""
+  });
 
   useEffect(() => {
     fetchEvents();
   }, []);
 
+  // Fetch all events from the API
   const fetchEvents = async () => {
     try {
       const response = await axios.get('http://127.0.0.1:8000/events');
@@ -19,17 +27,31 @@ const EventManager = () => {
     }
   };
 
+  // Handle input change for any event field
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewEvent({ ...newEvent, [name]: value });
+  };
+
+  // Handle adding a new event to the list
   const handleAddEvent = async () => {
-    if (newEvent.trim() === "") return;
+    const { name, type, description, start_date } = newEvent;
+    
+    // Basic validation
+    if (name.trim() === "" || type.trim() === "" || description.trim() === "" || start_date.trim() === "") {
+      return alert("Please fill out all fields");
+    }
+
     try {
-      const response = await axios.post('http://127.0.0.1:8000/events/', { name: newEvent });
+      const response = await axios.post('http://127.0.0.1:8000/events/', newEvent);
       setEvents([...events, response.data]);
-      setNewEvent("");
+      setNewEvent({ name: "", type: "", description: "", start_date: "" });
     } catch (error) {
       console.error("Error adding event:", error);
     }
   };
 
+  // Handle removing an event
   const handleRemoveEvent = async (id) => {
     try {
       await axios.delete(`http://127.0.0.1:8000/events/${id}`);
@@ -46,9 +68,34 @@ const EventManager = () => {
       <div className={styles.inputSection}>
         <input 
           type="text" 
-          value={newEvent} 
-          onChange={(e) => setNewEvent(e.target.value)} 
+          name="name" 
+          value={newEvent.name} 
+          onChange={handleInputChange} 
           placeholder="Enter event name" 
+          className={styles.inputField}
+        />
+        <input 
+          type="text" 
+          name="type" 
+          value={newEvent.type} 
+          onChange={handleInputChange} 
+          placeholder="Enter event type (e.g., meeting, conference)" 
+          className={styles.inputField}
+        />
+        <input 
+          type="text" 
+          name="description" 
+          value={newEvent.description} 
+          onChange={handleInputChange} 
+          placeholder="Enter event description" 
+          className={styles.inputField}
+        />
+        <input 
+          type="datetime-local" 
+          name="start_date" 
+          value={newEvent.start_date} 
+          onChange={handleInputChange} 
+          placeholder="Enter start date" 
           className={styles.inputField}
         />
         <button onClick={handleAddEvent} className={styles.addButton}>Add Event</button>
@@ -58,7 +105,10 @@ const EventManager = () => {
       <ul className={styles.eventList}>
         {events.map((event) => (
           <li key={event.id} className={styles.eventItem}>
-            {event.name}
+            <strong>{event.name}</strong><br/>
+            <em>Type:</em> {event.type}<br/>
+            <em>Description:</em> {event.description}<br/>
+            <em>Start Date:</em> {new Date(event.start_date).toLocaleString()}<br/>
             <button 
               onClick={() => handleRemoveEvent(event.id)} 
               className={styles.removeButton}>
