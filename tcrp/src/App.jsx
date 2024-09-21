@@ -4,6 +4,7 @@ import './App.css';
 import SignUpForm from './components/SignUpForm';
 import Header from './components/Header';
 import EventDetails from './components/EventDetails';
+import Footer from './components/Footer';
 
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
         {/* <SignUpForm /> */}
 
       </div>
+      <Footer />
     </div>
   );
 }
