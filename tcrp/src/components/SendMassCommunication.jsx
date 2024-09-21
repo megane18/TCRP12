@@ -3,11 +3,10 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
-import Footer from "./Footer";
 import Header from "./Header";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import { FaInstagram, FaYoutube, FaLinkedin, FaFacebook } from "react-icons/fa";
 const SendMassCommunication = () => {
   const [convertedText, setConvertedText] = useState(
     "Compose your message here"
@@ -40,12 +39,12 @@ const SendMassCommunication = () => {
   };
 
   return (
-    <div className="bg-white flex flex-col h-screen w-screen">
+    <div className=" flex flex-col h-screen w-screen bg-gradient-to-b from-blue-50 to-purple-50 min-h-screen">
       <Header />
-      <div className="bg-[#B7C9D3] mt-28 mx-2 flex-grow rounded-xl p-4 flex flex-col overflow-auto gap-4">
+      <div className="mt-28 mx-2 flex-grow rounded-xl p-4 flex flex-col overflow-auto gap-4">
         <form onSubmit={handleSubmit} className="flex flex-col w-full gap-5">
           <div className="text-black flex flex-col text-start">
-            <h2 className="font-bold text-xl">Send Mass Communication</h2>
+            <h2 className="font-bold text-3xl">Send Mass Communication</h2>
             <h4>Reach out to your community members efficiently</h4>
           </div>
           <div>
@@ -69,7 +68,7 @@ const SendMassCommunication = () => {
           </div>
 
           <div className="flex align-middle">
-            <label className="bg-black text-white rounded-md h-10 p-2 cursor-pointer">
+            <label className="bg-blue-600 text-white rounded-md h-10 p-2 cursor-pointer">
               Attach File
               <input
                 type="file"
@@ -175,7 +174,7 @@ const SendMassCommunication = () => {
             <div className="justify-start flex">
               <button
                 type="submit"
-                className="bg-black text-white rounded-md h-10 p-2"
+                className="bg-blue-600 text-white rounded-md h-10 p-2"
               >
                 Send
               </button>
@@ -186,13 +185,103 @@ const SendMassCommunication = () => {
                 selected={scheduleDate}
                 onChange={(date) => setScheduleDate(date)}
                 showTimeSelect
-                className="bg-black rounded-md w-full p-2 text-white"
+                className="bg-blue-600 rounded-md w-full p-2 text-white"
                 dateFormat="MMMM d, yyyy h:mm aa"
               />
             </div>
           </div>
         </form>
-        <Footer />
+        <footer className="bg-gray-800 text-white p-8 rounded-lg">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-blue-300 transition duration-300"
+                  >
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-blue-300 transition duration-300"
+                  >
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-blue-300 transition duration-300"
+                  >
+                    Projects
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-blue-300 transition duration-300"
+                  >
+                    Volunteer
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-blue-300 transition duration-300"
+                  >
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold mb-4">Contact Us</h3>
+              <p>(404) 207-8517</p>
+              <p>3726 East Main Street</p>
+              <p>College Park, GA 30337</p>
+              <p>P.O. Box 211, Fairburn, GA 30213</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
+              <div className="flex space-x-4 text-2xl mb-4">
+                <a
+                  href="#"
+                  className="hover:text-blue-300 transition duration-300"
+                >
+                  <FaFacebook />
+                </a>
+                <a
+                  href="#"
+                  className="hover:text-blue-300 transition duration-300"
+                >
+                  <FaInstagram />
+                </a>
+                <a
+                  href="#"
+                  className="hover:text-blue-300 transition duration-300"
+                >
+                  <FaYoutube />
+                </a>
+                <a
+                  href="#"
+                  className="hover:text-blue-300 transition duration-300"
+                >
+                  <FaLinkedin />
+                </a>
+              </div>
+              <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300 text-lg font-semibold w-full mb-2">
+                Donate
+              </button>
+              <button className="bg-transparent border-2 border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-gray-800 transition duration-300 text-lg font-semibold w-full">
+                Report an issue
+              </button>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   );
