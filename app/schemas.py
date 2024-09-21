@@ -16,8 +16,8 @@ class UserResponse(BaseModel):
 class UserCreate(BaseModel):
     email: EmailStr
     password: str
-    firstName: Optional[str]
-    lastName: Optional[str]
+    firstName: Optional[str]=None
+    lastName: Optional[str]=None
     dateCreated: datetime = datetime.now()
     class config: 
         orm_mode=True
