@@ -1,0 +1,16 @@
+{
+  "name": "tcrp12",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/sql.js": "^1.4.9",
+    "sql.js": "^1.11.0"
+  }
+}

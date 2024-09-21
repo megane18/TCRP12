@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .logo {
@@ -39,4 +41,17 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.content {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* Take full viewport height */
+}
+
+body, html {
+  height: 100%; /* Ensure the body and HTML take up the full height of the viewport */
+  margin: 0; /* Remove default margins */
+  padding: 0; /* Remove default padding */
 }

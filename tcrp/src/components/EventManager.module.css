@@ -1,0 +1,50 @@
+/* EventManager.module.css */
+
+.container {
+    padding: 20px;
+    background-color: #2b2b2b;
+    border-radius: 8px;
+    width: 100%;
+  }
+  
+  .inputSection {
+    margin-bottom: 20px;
+  }
+  
+  .inputField {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .addButton {
+    margin-left: 10px;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .addButton:hover {
+    background-color: #218838;
+  }
+  
+  .eventList {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .eventItem {
+    margin-bottom: 10px;
+  }
+  
+  .removeButton {
+    margin-left: 20px;
+    color: red;
+    border: none;
+    cursor: pointer;
+  }
+  
