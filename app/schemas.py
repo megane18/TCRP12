@@ -6,18 +6,18 @@ from datetime import datetime
 class UserResponse(BaseModel):
     id: UUID  # The UUID of the user
     email: str
-    firstName: Optional[str]
-    lastName: Optional[str]
+    firstName: Optional[str] = None
+    lastName: Optional[str] = None
 
     class Config:
         orm_mode = True
-
+# Refactor user schema and model: made firstName and lastName optional; updated user ID handling to support UUIDs
 
 class UserCreate(BaseModel):
     email: EmailStr
     password: str
-    firstName: str
-    lastName: str
+    firstName: Optional[str]= None
+    lastName: Optional[str] = None
     dateCreated: datetime = datetime.now()
     class config: 
         orm_mode=True
