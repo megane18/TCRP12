@@ -3,11 +3,8 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
-
-import { FaFacebook } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { FaYoutube } from "react-icons/fa";
+import Footer from "./Footer";
+import Header from "./Header";
 
 const SendMassCommunication = () => {
   const [convertedText, setConvertedText] = useState("Message");
@@ -15,9 +12,7 @@ const SendMassCommunication = () => {
   const defaultOption = options[0];
   return (
     <div className="bg-white flex flex-col h-screen w-screen">
-      <div>
-        <img src="./src/assets/logo.webp" alt="" className="h-10 mx-2 mt-2" />
-      </div>
+      <Header />
       <div className="bg-[#B7C9D3] mt-6 mx-2 overflow-hidden rounded-xl p-2 flex flex-col">
         <div className="text-black flex flex-col text-start">
           <h2 className="font-bold text-xl">Send Mass Communication</h2>
@@ -28,7 +23,7 @@ const SendMassCommunication = () => {
             <p className="text-start text-gray-500">Title</p>
             <input
               type="text"
-              className="bg-white rounded-md w-full h-10 p-1"
+              className="bg-white rounded-md w-full h-10 text-black p-1"
               placeholder="Subject title"
             />
           </div>
@@ -36,7 +31,7 @@ const SendMassCommunication = () => {
             <p className="text-start text-gray-500">Message</p>
             <ReactQuill
               theme="snow"
-              className="min-h-100 bg-white rounded-md"
+              className="min-h-100 bg-white rounded-md text-black"
               value={convertedText}
               onChange={setConvertedText}
             />
@@ -116,42 +111,7 @@ const SendMassCommunication = () => {
               </button>
             </div>
           </div>
-          <div className="flex mb-2 bg-[#6E3F63] rounded-md  p-2 flex-col">
-            <div className="flex flex-row justify-between w-full">
-              <div
-                className="flex flex-col text-start "
-                style={{ fontSize: 10 }}
-              >
-                <p className="text-white text-start text-base font-bold">
-                  CONTACT US
-                </p>
-                <p>(404) 207-8517</p>
-                <p>3726 East Main Street</p>
-                <p>College Park, GA 30337</p>
-                <p>Mailing Adress:</p>
-                <p>P.O. Box 211​ Fairburn, GA 30213 ​</p>
-                <p>phunter@communityrestorationproject.org</p>
-              </div>
-              <div className="flex flex-col gap-2 justify-end">
-                <div className="justify-start flex w-full">
-                  <button className="bg-[#5B707C] text-white rounded-md h-10 p-2 w-full">
-                    Donate
-                  </button>
-                </div>
-                <div className="justify-start flex w-full">
-                  <button className="bg-[#5B707C] text-white rounded-md h-10 p-2 w-full">
-                    Report an issue
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-row justify-center mt-2 gap-1">
-              <FaLinkedin className="text-white" />
-              <FaInstagram className="text-white" />
-              <FaFacebook className="text-white" />
-              <FaYoutube className="text-white" />
-            </div>
-          </div>
+          <Footer />
         </div>
       </div>
     </div>
