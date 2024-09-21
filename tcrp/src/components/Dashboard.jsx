@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, ChevronLeft, ChevronRight } from 'lucide-react';
 import { FaInstagram, FaYoutube, FaLinkedin, FaFacebook } from 'react-icons/fa';
+import Footer from './Footer';
 
 const CRPWebsite = () => {
   const events = [
@@ -102,47 +103,6 @@ const CRPWebsite = () => {
             </div>
           </section>
         </main>
-
-        {/* Footer */}
-        <footer className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-8 rounded-lg">
-          <div className="flex flex-col md:flex-row justify-between items-start space-y-6 md:space-y-0">
-            {/* Contact Information */}
-            <div className='md:text-left'>
-              <h2 className="text-xl font-bold mb-4">Contact Us</h2>
-              <p>(404) 207-8517</p>
-              <p>3726 East Main Street</p>
-              <p>College Park, GA 30337</p>
-              <p>Mailing Address:</p>
-              <p>P.O. Box 211</p>
-              <p>Fairburn, GA 30213</p>
-            </div>
-
-            {/* Social Media Icons */}
-            <div>
-              <h2 className="text-xl font-bold mb-4">Connect With Us</h2>
-              <div className="flex space-x-4 text-2xl">
-                <a href="#" className="text-white hover:text-gray-300 transition duration-300">
-                  <FaFacebook />
-                </a>
-                <a href="#" className="text-white hover:text-gray-300 transition duration-300">
-                  <FaInstagram />
-                </a>
-                <a href="#" className="text-white hover:text-gray-300 transition duration-300">
-                  <FaYoutube />
-                </a>
-                <a href="#" className="text-white hover:text-gray-300 transition duration-300">
-                  <FaLinkedin />
-                </a>
-              </div>
-            </div>
-
-            {/* Buttons */}
-            <div className="flex flex-col space-y-4">
-              <button className="bg-white text-purple-600 py-2 px-6 rounded-full hover:bg-gray-100 transition duration-300 text-lg font-semibold">Donate</button>
-              <button className="bg-transparent border-2 border-white text-white py-2 px-6 rounded-full hover:bg-white hover:text-purple-600 transition duration-300 text-lg font-semibold">Report an issue</button>
-            </div> 
-          </div>
-        </footer>
       </div>
     </div>
   );
