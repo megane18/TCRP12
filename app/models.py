@@ -7,6 +7,8 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 import uuid
 from sqlalchemy.sql import func
+from sqlalchemy import Column, Integer, String
+
 
 Base = declarative_base()
 
@@ -21,3 +23,8 @@ class User(Base):
     dateCreated = Column(TIMESTAMP(timezone=True), nullable=False, server_default=func.now())  # Set default to current time
     class config:
         orm_mode=True
+        
+class Event(Base):
+    __tablename__ = "events"
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, index=True, nullable=False)

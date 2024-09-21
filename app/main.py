@@ -2,9 +2,10 @@ from fastapi import FastAPI
 from . import models
 from .database import engine
 from passlib.context import CryptContext
-from .routers import user,auth
+from .routers import user,auth,events
 from .config import settings
 from fastapi.middleware.cors import CORSMiddleware
+
 
 
 
@@ -26,6 +27,8 @@ app.add_middleware(
 
 app.include_router(user.router)
 app.include_router(auth.router)
+app.include_router(events.router)
+
 
 @app.get("/")
 def read_root():
