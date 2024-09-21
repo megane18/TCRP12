@@ -8,23 +8,6 @@ const CRPHomePage = () => {
   return (
     <div className="bg-gradient-to-b from-blue-50 to-purple-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 pb-4">
-        {/* <header className="flex justify-between items-center py-6">
-          <div className="flex items-center">
-            <img src="/api/placeholder/40/40" alt="CRP Logo" className="w-12 h-12 mr-3" />
-            <span className="text-2xl font-bold text-blue-600">CRP</span>
-          </div>
-          <nav className="hidden md:flex space-x-6">
-            <a href="#" className="text-gray-600 hover:text-blue-600">Home</a>
-            <a href="#" className="text-gray-600 hover:text-blue-600">About</a>
-            <a href="#" className="text-gray-600 hover:text-blue-600">Events</a>
-            <a href="#" className="text-gray-600 hover:text-blue-600">Contact</a>
-          </nav>
-          <button className="md:hidden">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </header> */}
 
         <main className="py-12 mt-12">
           <section className="text-center mb-16">

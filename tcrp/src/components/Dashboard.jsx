@@ -36,22 +36,9 @@ const CRPWebsite = () => {
   return (
     <div className="bg-gradient-to-b from-blue-50 to-purple-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 pb-4">
-        <header className="flex justify-between items-center py-6">
-          <div className="flex items-center">
-            <img src="/api/placeholder/40/40" alt="CRP Logo" className="w-12 h-12 mr-3" />
-            <span className="text-2xl font-bold text-blue-600">CRP</span>
-          </div>
-          <nav className="hidden md:flex space-x-6">
-            <a href="#" className="text-gray-600 hover:text-blue-600">Home</a>
-            <a href="#" className="text-gray-600 hover:text-blue-600">About</a>
-            <a href="#" className="text-gray-600 hover:text-blue-600">Events</a>
-            <a href="#" className="text-gray-600 hover:text-blue-600">Contact</a>
-          </nav>
-          <Menu className="w-6 h-6 md:hidden" />
-        </header>
 
         <main className="py-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center text-gray-800">Community Restoration Project</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center text-gray-800 mt-12">Community Restoration Project</h1>
 
           {/* Featured Events Section */}
           <section className="mb-12">
