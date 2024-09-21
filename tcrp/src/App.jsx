@@ -5,6 +5,7 @@ import SignUpForm from './components/SignUpForm';
 import Header from './components/Header';
 import EventDetails from './components/EventDetails';
 import Footer from './components/Footer';
+import AdminDashboard from './components/AdminDashboard';
 
 
 const App = () => {
@@ -13,7 +14,8 @@ const App = () => {
       <Header />
       <div className="content flex-grow bg-white">
         {/* <EventManager /> */}
-        <EventDetails eventId={1} />
+        {/* <EventDetails eventId={1} /> */}
+        <AdminDashboard />
 
         {/* <SignUpForm /> */}
 
