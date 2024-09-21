@@ -7,13 +7,15 @@ import AdminDashboard from './components/AdminDashboard';
 import Footer from './components/Footer';
 import Home from './components/Home'
 import './App.css';
+import React, { useRef } from 'react';
+
 
 const App = () => {
-
+  const footerRef = useRef(null);
   return (
     <Router>
       <div className="flex flex-col min-h-screen w-full">
-        <Header />
+        <Header footerRef={footerRef} />
         <div className="content flex-grow">
           <Routes>
           <Route path="/" element={<Home />} />
@@ -24,7 +26,7 @@ const App = () => {
             <Route path="footer" element={<Footer/>} />
           </Routes>
         </div>
-        <Footer />
+        <Footer footerRef={footerRef} />
       </div>
     </Router>
   );

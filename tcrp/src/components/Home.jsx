@@ -88,7 +88,6 @@ const CRPHomePage = () => {
             </div>
           </section>
         </main>
-        <Footer />
       </div>
     </div>
   );
