@@ -52,7 +52,12 @@ const Header = ({ footerRef }) => {
     <header className="fixed top-0 left-0 right-0 bg-white shadow-md z-30">
       <div className="container mx-auto flex justify-between items-center p-0">
         <Link to="/">
-          <img className="w-40" src={logo} alt="CRP Logo" />
+          <div className='flex items-center'>
+            <img className="w-40 mr-4" src={logo} alt="CRP Logo" />
+            <p 
+            className='hidden sm:flex text-black text-left flex text-3xl mt-1 font-thin ml-3' 
+            style={{ color: '#2b5ea3' }}>- Community Restoration Program</p>
+          </div>
         </Link>
         <div className="relative flex items-center">
           <nav className="hidden md:flex space-x-6 me-4">
