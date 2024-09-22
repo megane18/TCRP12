@@ -34,4 +34,4 @@ class Event(Base):
     description = Column(String, index=True, nullable=False)
     add_date = Column(TIMESTAMP(timezone=True), nullable=False, server_default=func.now())  # Set default to current time
     start_date = Column(TIMESTAMP(timezone=True), nullable=False)
-    
+    filename = Column(String, nullable=True)

@@ -1,33 +1,70 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, File, UploadFile
 from sqlalchemy.orm import Session
 from .. import models, schemas
 from ..database import get_db
 import logging
 from typing import List
+import uuid
+import os
+from datetime import datetime
+
 
 router = APIRouter(
     prefix="/events",
     tags=["events"]
 )
 
+IMAGEDIR = "images/"
+
 # Set up basic logging
 logging.basicConfig(level=logging.INFO)
 
+from fastapi import Form
+
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.EventResponse)
-def create_event(event: schemas.EventCreate, db: Session = Depends(get_db)):
-    logging.info(f"Creating a new event with name: {event.name}")
+async def create_event(
+    name: str = Form(...),
+    type: str = Form(...),
+    description: str = Form(...),
+    start_date: str = Form(...),
+    file: UploadFile = File(...),
+    db: Session = Depends(get_db)
+):
+    logging.info(f"Creating a new event with name: {name}")
+
+    try:
+        parsed_start_date = datetime.fromisoformat(start_date)  # Accepts ISO 8601 with timezone
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid start_date format. Expected format: 'YYYY-MM-DD HH:MM:SS.ssssss±HH:MM'.")
+
+    os.makedirs(IMAGEDIR, exist_ok=True)
+
     
+    # Generate a unique filename and save the file
+    file.filename = f"{uuid.uuid4()}.jpg"
+    contents = await file.read()
+
+    with open(f"{IMAGEDIR}{file.filename}", "wb") as f:
+        f.write(contents)
+
+    # Create the event record
     new_event = models.Event(
-        name=event.name,
-        type=event.type,
-        description=event.description,
-        start_date=event.start_date
+        name=name,
+        type=type,
+        description=description,
+        start_date=parsed_start_date,
+        filename=file.filename
     )
+
+    # Save the event in the database
     db.add(new_event)
     db.commit()
     db.refresh(new_event)
     logging.info(f"Event created with ID: {new_event.id}")
+
     return new_event
+
+
 @router.put("/{id}", response_model=schemas.EventResponse)
 def update_event(id: int, event: schemas.EventCreate, db: Session = Depends(get_db)):
     # Query the database for the event by ID
@@ -42,7 +79,8 @@ def update_event(id: int, event: schemas.EventCreate, db: Session = Depends(get_
         "name": event.name,
         "type": event.type,
         "description": event.description,
-        "start_date": event.start_date
+        "start_date": event.start_date,
+        "filename": event_in_db.filename
     })
     
     db.commit()
