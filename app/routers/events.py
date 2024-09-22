@@ -28,6 +28,27 @@ def create_event(event: schemas.EventCreate, db: Session = Depends(get_db)):
     db.refresh(new_event)
     logging.info(f"Event created with ID: {new_event.id}")
     return new_event
+@router.put("/{id}", response_model=schemas.EventResponse)
+def update_event(id: int, event: schemas.EventCreate, db: Session = Depends(get_db)):
+    # Query the database for the event by ID
+    event_in_db_query = db.query(models.Event).filter(models.Event.id == id)
+    event_in_db = event_in_db_query.first()
+    
+    if not event_in_db:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Event not found")
+    
+    # Update the event with the new data
+    event_in_db_query.update({
+        "name": event.name,
+        "type": event.type,
+        "description": event.description,
+        "start_date": event.start_date
+    })
+    
+    db.commit()
+    
+    logging.info(f"Event with ID {id} updated")
+    return event_in_db
 
 @router.get("/", response_model=List[schemas.EventResponse])
 def get_events(db: Session = Depends(get_db)):
