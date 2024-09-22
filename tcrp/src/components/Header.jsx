@@ -55,8 +55,8 @@ const Header = ({ footerRef }) => {
           <div className='flex items-center'>
             <img className="w-40 mr-4" src={logo} alt="CRP Logo" />
             <p 
-            className='hidden sm:flex text-black text-left flex text-3xl mt-1 font-thin ml-3' 
-            style={{ color: '#2b5ea3' }}>- Community Restoration Program</p>
+            className='hidden sm:flex text-black text-left flex text-2xl mt-1 font-thin ml-1' 
+            style={{ color: '#2b5ea3' }}>Community Restoration Program</p>
           </div>
         </Link>
         <div className="relative flex items-center">
@@ -67,12 +67,12 @@ const Header = ({ footerRef }) => {
             <a onClick={handleScrollToFooter} className="text-gray-600 hover:text-blue-600">
               Contact
             </a>
-            <Link to="/signup" className="text-gray-600 hover:text-blue-600">Sign Up</Link>
+            {/* <Link to="/signup" className="text-gray-600 hover:text-blue-600">Sign Up</Link> */}
           </nav>
 
           <button 
             onClick={toggleMenu} 
-            className="MenuButton focus:outline-none bg-gray-100 border-2 border-gray-100 hover:border-gray-200 rounded-md p-2 md:hidden"
+            className="MenuButton focus:outline-none bg-gray-100 border-2 border-gray-100 hover:border-gray-200 rounded-md p-2"
           >
             <Menu className="text-gray-600" size={24} />
           </button>
