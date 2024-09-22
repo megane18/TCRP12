@@ -51,6 +51,7 @@ class EventResponse(BaseModel):
     description: str
     add_date: datetime
     start_date: datetime
+    filename: Optional[str] = None
 
     class Config:
         orm_mode = True
