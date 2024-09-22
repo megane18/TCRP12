@@ -4,9 +4,68 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { Link } from "react-router-dom";
 import pendingRequests from "../assets/pendingrequest";
+import dummyEvents from "../assets/events";
+import { useTable } from "react-table";
+import { XIcon } from "lucide-react";
+
+const contentStyle = {
+  background: "rgba(255,255,255)",
+  width: "80%",
+  maxWidth: "500px",
+  padding: "5px",
+  border: "none",
+  borderRadius: "10px",
+};
+const overlayStyle = { background: "rgba(0,0,0,0.1)" };
 
 const AdminDashboard = () => {
+  const data = React.useMemo(() => pendingRequests, []);
+
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "ID",
+        accessor: "id", // accessor is the "key" in the data
+      },
+      {
+        Header: "Name",
+        accessor: "name",
+      },
+      {
+        Header: "Email",
+        accessor: "email",
+      },
+      {
+        Header: "Phone",
+        accessor: "phone",
+      },
+      {
+        Header: "Message",
+        accessor: "message",
+      },
+      {
+        Header: "Request Type",
+        accessor: "requestType",
+      },
+      {
+        Header: "Completed",
+        accessor: "completed",
+        Cell: ({ value }) => (value ? "Yes" : "No"), // Format boolean values
+      },
+    ],
+    []
+  );
+
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable({ columns, data });
+
   const [events, setEvents] = useState([]);
+
+  const upcomingEvents = dummyEvents.filter((event) => {
+    const eventDate = new Date(event.start_date);
+    const currentDate = new Date();
+    return eventDate > currentDate;
+  });
 
   // Expanded state to include the new event fields
   const [newEvent, setNewEvent] = useState({
@@ -23,12 +82,13 @@ const AdminDashboard = () => {
   // Fetch all events from the API
   const fetchEvents = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:8000/events");
-      if (response.data.length === 0) {
-        setEvents([]); // Handle case where no events are found
-      } else {
-        setEvents(response.data);
-      }
+      setEvents(upcomingEvents);
+      // const response = await axios.get("http://127.0.0.1:8000/events");
+      // if (response.data.length === 0) {
+      //   setEvents([]); // Handle case where no events are found
+      // } else {
+      //   setEvents(response.data);
+      // }
     } catch (error) {
       console.error("Error fetching events:", error);
     }
@@ -77,7 +137,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen p-8 justify-center">
+    <div className="bg-gradient-to-b from-blue-50 to-purple-50 min-h-screen p-20 ">
       {/* Dashboard Header */}
       <h1 className="text-3xl font-bold text-black mb-6 mt-12">
         Admin Dashboard
@@ -85,52 +145,56 @@ const AdminDashboard = () => {
 
       {/* Stats Overview */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8 text-black">
-        <div className="bg-white p-6 shadow-md rounded-lg">
+        <div className="bg-white p-6 shadow-md rounded-lg flex flex-col items-center">
           <h2 className="text-xl font-bold">Total Member Count</h2>
           <p className="text-4xl font-bold text-black">3423</p>
         </div>
-        <div className="bg-white p-6 shadow-md rounded-lg">
+        <div className="bg-white p-6 shadow-md rounded-lg flex flex-col items-center">
           <h2 className="text-xl font-bold">New Member Requests</h2>
           <p className="text-4xl font-bold text-black">45</p>
         </div>
-        <div className="bg-white p-6 shadow-md rounded-lg">
+        <div className="bg-white p-6 shadow-md rounded-lg flex flex-col items-center">
           <h2 className="text-xl font-bold">Upcoming Events</h2>
           <p className="text-4xl font-bold text-black">3423</p>
         </div>
-        <div className="bg-white p-6 shadow-md rounded-lg">
+        <div className="bg-white p-6 shadow-md rounded-lg flex flex-col items-center">
           <h2 className="text-xl font-bold">Help Requests</h2>
           <p className="text-4xl font-bold text-black">45</p>
         </div>
       </div>
 
       {/* Action Buttons */}
-      <div className="flex justify-center mb-8 gap-2">
-        {/* <button className="bg-gray-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-gray-600">
-          + Create New Events
-        </button> */}
+      <div className="flex justify-end mb-8 gap-2 ">
         <Link to="/send-mass-communication">
-          <button className="bg-gray-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-gray-600">
+          <button className="bg-gray-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-gray-600 text-sm">
             + Send Mass Communication
           </button>
         </Link>
 
-        {/* Event Input Section */}
         <Popup
           trigger={
-            <button className="bg-gray-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-gray-600">
+            <button className="bg-gray-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-gray-600 text-sm">
               + Create Event
             </button>
           }
+          {...{
+            contentStyle,
+            overlayStyle,
+          }}
           position="center center"
           modal
         >
           {(close) => (
-            <div className="modal flex justify-center  bg-gray-300 rounded-lg w-fit">
-              {/* <button className="close" onClick={close}>
-              &times;
-            </button> */}
-              <div className="mb-8 flex justify-center ">
-                <div className=" text-black p-5">
+            <div className="justify-center  rounded-lg ">
+              <XIcon
+                size={24}
+                color="black"
+                onClick={close}
+                className="absolute top-2 right-2"
+              />
+
+              <div className="justify-center flex  w-full h-full">
+                <div className=" text-black p-5  rounded-lg">
                   <h2 className="text-2xl font-bold text-black mb-4">
                     Add New Event
                   </h2>
@@ -181,66 +245,110 @@ const AdminDashboard = () => {
       </div>
 
       {/* Upcoming Events Section */}
-      <div className="mb-8 flex justify-center">
-        <div className="w-2/3">
-          <h2 className="text-2xl font-bold text-black mb-4">
-            Upcoming Events
-          </h2>
-          {events.length > 0 ? (
-            <ul className="space-y-4">
-              {events.map((event) => (
-                <li
-                  key={event.id}
-                  className="bg-white p-6 shadow-md rounded-lg text-black"
+
+      {events && (
+        <>
+          <section className="mb-12">
+            <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+              Events and Posts
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {events.map((event, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300"
                 >
-                  <strong>{event.name}</strong>
-                  <br />
-                  <em>Type:</em> {event.type}
-                  <br />
-                  <em>Description:</em> {event.description}
-                  <br />
-                  <em>Start Date:</em>{" "}
-                  {new Date(event.start_date).toLocaleString()}
-                  <br />
-                  <button
-                    onClick={() => handleRemoveEvent(event.id)}
-                    className="bg-red-500 text-white px-4 py-2 rounded-lg mt-2"
-                  >
-                    Remove
-                  </button>
-                </li>
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-2 text-gray-800">
+                      {event.name}
+                    </h3>
+                    <p className="mb-4 text-gray-600 text-sm">
+                      {event.description}
+                    </p>
+                    <div className="flex gap-4 items-center">
+                      <button
+                        onClick={() => handleRemoveEvent(event.id)}
+                        className="bg-red-500 text-white px-4 py-2 rounded-lg mt-2 mr-2"
+                      >
+                        Remove
+                      </button>
+                      <button
+                        onClick={() => handleRemoveEvent(event.id)}
+                        className="bg-red-500 text-white px-6 py- rounded-lg mt-2"
+                      >
+                        Edit
+                      </button>
+                    </div>
+                  </div>
+                </div>
               ))}
-            </ul>
-          ) : (
-            <p className="text-gray-600">No upcoming events</p>
-          )}
-        </div>
-      </div>
+            </div>
+          </section>
+        </>
+      )}
 
       {/* Pending Requests Section */}
-      <div>
-        <h2 className="text-2xl font-bold text-black mb-4">Pending Requests</h2>
-        {pendingRequests
-          .filter((issue) => !issue.completed)
-          .map((issue) => (
-            <div
-              key={issue.id}
-              className="bg-white p-6 shadow-md rounded-lg mb-4 text-start"
-            >
-              <h3 className="text-xl font-bold text-black">
-                {issue.name} : {issue.requestType}
-              </h3>
-              <p className="text-gray-600 mb-4">{issue.message}</p>
-              <div className="flex space-x-2">
-                <button className="bg-gray-500 text-white px-4 py-2 rounded-lg">
-                  Assign to Staff
-                </button>
-                <button className="bg-green-500 text-white px-4 py-2 rounded-lg">
-                  Resolved
-                </button>
-              </div>
-            </div>
-          ))}
+      <div className=" mx-auto my-8 ">
+        <h1 className="text-2xl font-bold text-center mb-6 text-black">
+          Pending Requests
+        </h1>
+        <div className="overflow-x-auto rounded-lg">
+          <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
+            <thead className="bg-gray-100">
+              <tr>
+                <th className="py-3 px-4 text-left text-gray-600">Status</th>
+                <th className="py-3 px-4 text-left text-gray-600">
+                  Request Type
+                </th>
+                <th className="py-3 px-4 text-left text-gray-600">Name</th>
+                <th className="py-3 px-4 text-left text-gray-600">Email</th>
+                <th className="py-3 px-4 text-left text-gray-600">Message</th>
+                <th className="py-3 px-4 text-left text-gray-600">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pendingRequests.map((issue) => (
+                <tr
+                  key={issue.id}
+                  className="hover:bg-gray-50 text-black text-start"
+                >
+                  <td className="py-3 px-4 border-b border-gray-200">
+                    {issue.completed ? "Resolved" : "Pending"}
+                  </td>
+                  <td className="py-3 px-4 border-b border-gray-200">
+                    {issue.requestType}
+                  </td>
+                  <td className="py-3 px-4 border-b border-gray-200">
+                    {issue.name}
+                  </td>
+                  <td className="py-3 px-4 border-b border-gray-200">
+                    {issue.email}
+                  </td>
+                  <td className="py-3 px-4 border-b border-gray-200">
+                    {issue.message}
+                  </td>
+                  <td className="py-3 px-4 border-b border-gray-200">
+                    <div className="flex space-x-2">
+                      <button className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
+                        Assign to Staff
+                      </button>
+                      {!issue.completed && (
+                        <button className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+                          Resolve
+                        </button>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

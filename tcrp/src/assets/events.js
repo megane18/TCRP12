@@ -15,7 +15,7 @@ const dummyEvents = [
     type: "Seminar",
     description:
       "A comprehensive seminar for first-time home buyers covering essential tips and resources.",
-    start_date: "2024-10-15",
+    start_date: "2024-04-15",
     image:
       "https://scontent-atl3-2.xx.fbcdn.net/v/t39.30808-6/380830366_682839023878194_3727574057354942455_n.jpg?stp=cp6_dst-jpg&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=yXlcQXo5Pf8Q7kNvgHEMSGT&_nc_ht=scontent-atl3-2.xx&_nc_gid=A6PSyYgNuYtOQCWSB27lJ4y&oh=00_AYBc93sWoPXtcJm04yaR3XKYH1Id2f83IN5deWJkuwKqbg&oe=66F65458",
     location: "Town Hall Auditorium",
@@ -37,7 +37,7 @@ const dummyEvents = [
     type: "Workshop",
     description:
       "Understand the entire process of home ownership from beginning to the closing table.",
-    start_date: "2024-11-01",
+    start_date: "2024-08-01",
     image:
       "https://static.wixstatic.com/media/07d127_58792a955d7f4f38bbd9865118629f3f~mv2.png/v1/fill/w_399,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Screen%20Shot%202024-04-10%20at%201_38_16%20PM.png",
     location: "Community Center, Room B",
@@ -70,7 +70,7 @@ const dummyEvents = [
     type: "Workshop",
     description:
       "Learn basic investment strategies to grow your savings and prepare for the future.",
-    start_date: "2024-11-20",
+    start_date: "2024-09-20",
     image:
       "https://scontent-atl3-2.xx.fbcdn.net/v/t39.30808-6/341122428_1686478025088207_7284350851226380061_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=3bOGyCTxV8MQ7kNvgHC4Cl5&_nc_ht=scontent-atl3-2.xx&_nc_gid=A9FnA8sn1rNxGFSTX_r4GNK&oh=00_AYBpOllXhSKhzQou2iByQlYrjatIWL4dxUdem7uA37FE2A&oe=66F661A9",
     location: "Downtown Library, Room 3",
