@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 
 import { FaInstagram, FaYoutube, FaLinkedin, FaFacebook } from 'react-icons/fa'; // For social media icons
@@ -39,9 +40,11 @@ const Footer = ({ footerRef }) => {
 
         {/* Buttons */}
         <div className="flex flex-col space-y-4">
-          <button className="bg-gray-100 py-2 p-4 rounded-md hover:bg-gray-600 text-black">Donate</button>
+          <div>
+            <button className="bg-gray-100 py-2 p-4 rounded-md hover:bg-gray-600 text-black w-40">Donate</button>
+          </div>
           <Link to="/request-form">
-            <button className="bg-gray-100 py-2 p-4 rounded-md hover:bg-gray-600 text-black">Report an issue</button>
+            <button className="bg-gray-100 py-2 p-4 rounded-md hover:bg-gray-600 text-black w-40">Report an issue</button>
           </Link>
         </div> 
       </div>
