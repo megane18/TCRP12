@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Footer from './Footer';
+import { Link } from 'react-router-dom';
+
 
 
 const AdminDashboard = () => {
@@ -96,9 +98,11 @@ const AdminDashboard = () => {
         {/* <button className="bg-gray-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-gray-600">
           + Create New Events
         </button> */}
-        <button className="bg-gray-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-gray-600">
-          + Send Mass Communication
-        </button>
+        <Link to="/send-mass-communication">
+          <button className="bg-gray-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-gray-600">
+            + Send Mass Communication
+          </button>
+        </Link>
       </div>
 
       {/* Event Input Section */}
