@@ -26,6 +26,15 @@ class Token(BaseModel):
     access_token: str
     token_type: str
 
+class Request(BaseModel):
+    id:int
+    full_name:str
+    email:str
+    phone:str
+    type:str
+    description:str
+
+
 
 # EVENTS
 class EventCreate(BaseModel):
