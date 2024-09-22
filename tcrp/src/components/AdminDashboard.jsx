@@ -3,6 +3,7 @@ import axios from "axios";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { Link } from "react-router-dom";
+import pendingRequests from "../assets/pendingrequest";
 
 const AdminDashboard = () => {
   const [events, setEvents] = useState([]);
@@ -219,22 +220,27 @@ const AdminDashboard = () => {
       {/* Pending Requests Section */}
       <div>
         <h2 className="text-2xl font-bold text-black mb-4">Pending Requests</h2>
-        {[1, 2, 3].map((issue) => (
-          <div key={issue} className="bg-white p-6 shadow-md rounded-lg mb-4">
-            <h3 className="text-xl font-bold">Issue {issue}</h3>
-            <p className="text-gray-600 mb-4">
-              Supporting line text lorem ipsum dolor sit amet, consectetur.
-            </p>
-            <div className="flex space-x-2">
-              <button className="bg-gray-500 text-white px-4 py-2 rounded-lg">
-                Assign to Staff
-              </button>
-              <button className="bg-green-500 text-white px-4 py-2 rounded-lg">
-                Resolved
-              </button>
+        {pendingRequests
+          .filter((issue) => !issue.completed)
+          .map((issue) => (
+            <div
+              key={issue.id}
+              className="bg-white p-6 shadow-md rounded-lg mb-4 text-start"
+            >
+              <h3 className="text-xl font-bold text-black">
+                {issue.name} : {issue.requestType}
+              </h3>
+              <p className="text-gray-600 mb-4">{issue.message}</p>
+              <div className="flex space-x-2">
+                <button className="bg-gray-500 text-white px-4 py-2 rounded-lg">
+                  Assign to Staff
+                </button>
+                <button className="bg-green-500 text-white px-4 py-2 rounded-lg">
+                  Resolved
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );
