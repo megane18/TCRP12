@@ -3,7 +3,27 @@ import { Menu, ChevronLeft, ChevronRight } from 'lucide-react';
 import { FaInstagram, FaYoutube, FaLinkedin, FaFacebook } from 'react-icons/fa';
 import Footer from './Footer';
 
+
 const CRPWebsite = () => {
+  
+const Modal = ({ show, handleClose, children }) => {
+  if (!show) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+      <div className="bg-white p-6 rounded shadow-lg w-96">
+        {children}
+        <button
+          onClick={handleClose}
+          className="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition duration-300"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  );
+};
+
   const events = [
     {
       title: 'Lorem ipsum dolor',
@@ -24,6 +44,12 @@ const CRPWebsite = () => {
 
   const [activeEventIndex, setActiveEventIndex] = useState(0);
   const featuredEvent = events[activeEventIndex];
+  const [showModal, setShowModal] = useState(false);
+
+
+  const handleOpenModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+
 
   const nextEvent = () => {
     setActiveEventIndex((prevIndex) => (prevIndex + 1) % events.length);
@@ -59,7 +85,7 @@ const CRPWebsite = () => {
                 <h3 className="text-2xl font-bold mb-2 text-gray-800">{featuredEvent.title}</h3>
                 <p className="mb-4 text-gray-600">{featuredEvent.description}</p>
                 <div className="flex gap-4">
-                  <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">
+                  <button onClick={handleOpenModal} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">
                     Sign up for event
                   </button>
                   <button className="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition duration-300">
@@ -81,7 +107,7 @@ const CRPWebsite = () => {
                     <h3 className="text-xl font-bold mb-2 text-gray-800">{event.title}</h3>
                     <p className="mb-4 text-gray-600 text-sm">{event.description}</p>
                     <div className="flex justify-between">
-                      <button className="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition duration-300">Sign up</button>
+                      <button onClick={handleOpenModal} className="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition duration-300">Sign up</button>
                       <button className="bg-gray-200 text-gray-800 px-3 py-1 rounded text-sm hover:bg-gray-300 transition duration-300">Remind Me</button>
                     </div>
                   </div>
@@ -89,6 +115,26 @@ const CRPWebsite = () => {
               ))}
             </div>
           </section>
+          {/* Modal for signing up */}
+          <Modal show={showModal} handleClose={handleCloseModal}>
+            <h2 className="text-xl font-bold">Sign Up for {featuredEvent.title}</h2>
+            <p>Please enter your details to sign up for the event.</p>
+            <input
+              type="text"
+              placeholder="Your Name"
+              className="w-full p-2 mt-4 border rounded"
+            />
+            <input
+              type="email"
+              placeholder="Your Email"
+              className="w-full p-2 mt-4 border rounded"
+            />
+            <button
+              className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300"
+            >
+              Submit
+            </button>
+          </Modal>
         </main>
       </div>
     </div>
