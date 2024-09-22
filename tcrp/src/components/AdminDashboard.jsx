@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Footer from './Footer';
-import { Link } from 'react-router-dom';
-
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import { Link } from "react-router-dom";
 
 const AdminDashboard = () => {
   const [events, setEvents] = useState([]);
@@ -13,7 +12,7 @@ const AdminDashboard = () => {
     name: "",
     type: "",
     description: "",
-    start_date: ""
+    start_date: "",
   });
 
   useEffect(() => {
@@ -23,9 +22,9 @@ const AdminDashboard = () => {
   // Fetch all events from the API
   const fetchEvents = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/events');
+      const response = await axios.get("http://127.0.0.1:8000/events");
       if (response.data.length === 0) {
-        setEvents([]);  // Handle case where no events are found
+        setEvents([]); // Handle case where no events are found
       } else {
         setEvents(response.data);
       }
@@ -45,12 +44,20 @@ const AdminDashboard = () => {
     const { name, type, description, start_date } = newEvent;
 
     // Basic validation
-    if (name.trim() === "" || type.trim() === "" || description.trim() === "" || start_date.trim() === "") {
+    if (
+      name.trim() === "" ||
+      type.trim() === "" ||
+      description.trim() === "" ||
+      start_date.trim() === ""
+    ) {
       return alert("Please fill out all fields");
     }
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/events/', newEvent);
+      const response = await axios.post(
+        "http://127.0.0.1:8000/events/",
+        newEvent
+      );
       setEvents([...events, response.data]);
       setNewEvent({ name: "", type: "", description: "", start_date: "" });
     } catch (error) {
@@ -71,7 +78,9 @@ const AdminDashboard = () => {
   return (
     <div className="bg-gray-100 min-h-screen p-8 justify-center">
       {/* Dashboard Header */}
-      <h1 className="text-3xl font-bold text-black mb-6 mt-12">Admin Dashboard</h1>
+      <h1 className="text-3xl font-bold text-black mb-6 mt-12">
+        Admin Dashboard
+      </h1>
 
       {/* Stats Overview */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8 text-black">
@@ -94,7 +103,7 @@ const AdminDashboard = () => {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex justify-center mb-8">
+      <div className="flex justify-center mb-8 gap-2">
         {/* <button className="bg-gray-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-gray-600">
           + Create New Events
         </button> */}
@@ -103,10 +112,73 @@ const AdminDashboard = () => {
             + Send Mass Communication
           </button>
         </Link>
+        <Popup
+          trigger={
+            <button className="bg-gray-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-gray-600">
+              + Create Event
+            </button>
+          }
+          position="center center"
+          modal
+        >
+          {(close) => (
+            <div className="modal flex justify-center  bg-gray-300 rounded-lg w-fit">
+              {/* <button className="close" onClick={close}>
+              &times;
+            </button> */}
+              <div className="mb-8 flex justify-center ">
+                <div className=" text-black p-5">
+                  <h2 className="text-2xl font-bold text-black mb-4">
+                    Add New Event
+                  </h2>
+                  <div className="">
+                    <input
+                      type="text"
+                      name="name"
+                      value={newEvent.name}
+                      onChange={handleInputChange}
+                      placeholder="Enter event name"
+                      className="border border-gray-300 p-2 rounded-lg w-full mb-4 bg-gray-100"
+                    />
+                    <input
+                      type="text"
+                      name="type"
+                      value={newEvent.type}
+                      onChange={handleInputChange}
+                      placeholder="Enter event type (e.g., meeting, conference)"
+                      className="border border-gray-300 p-2 rounded-lg w-full mb-4 bg-gray-100"
+                    />
+                    <input
+                      type="text"
+                      name="description"
+                      value={newEvent.description}
+                      onChange={handleInputChange}
+                      placeholder="Enter event description"
+                      className="border border-gray-300 p-2 rounded-lg w-full mb-4 bg-gray-100"
+                    />
+                    <input
+                      type="datetime-local"
+                      name="start_date"
+                      value={newEvent.start_date}
+                      onChange={handleInputChange}
+                      className="border border-gray-300 p-2 rounded-lg w-full mb-4 bg-gray-100 text-gray-400"
+                    />
+                    <button
+                      onClick={handleAddEvent}
+                      className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+                    >
+                      Add Event
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </Popup>
       </div>
 
       {/* Event Input Section */}
-      <div className="mb-8 flex justify-center">
+      {/* <div className="mb-8 flex justify-center">
         <div className="w-1/2 text-black">
             <h2 className="text-2xl font-bold text-black mb-4">Add New Event</h2>
             <div className="bg-white p-6 shadow-md rounded-lg">
@@ -148,23 +220,34 @@ const AdminDashboard = () => {
             </button>
             </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Upcoming Events Section */}
       <div className="mb-8 flex justify-center">
         <div className="w-2/3">
-          <h2 className="text-2xl font-bold text-black mb-4">Upcoming Events</h2>
+          <h2 className="text-2xl font-bold text-black mb-4">
+            Upcoming Events
+          </h2>
           {events.length > 0 ? (
             <ul className="space-y-4">
               {events.map((event) => (
-                <li key={event.id} className="bg-white p-6 shadow-md rounded-lg text-black">
-                  <strong>{event.name}</strong><br />
-                  <em>Type:</em> {event.type}<br />
-                  <em>Description:</em> {event.description}<br />
-                  <em>Start Date:</em> {new Date(event.start_date).toLocaleString()}<br />
+                <li
+                  key={event.id}
+                  className="bg-white p-6 shadow-md rounded-lg text-black"
+                >
+                  <strong>{event.name}</strong>
+                  <br />
+                  <em>Type:</em> {event.type}
+                  <br />
+                  <em>Description:</em> {event.description}
+                  <br />
+                  <em>Start Date:</em>{" "}
+                  {new Date(event.start_date).toLocaleString()}
+                  <br />
                   <button
                     onClick={() => handleRemoveEvent(event.id)}
-                    className="bg-red-500 text-white px-4 py-2 rounded-lg mt-2">
+                    className="bg-red-500 text-white px-4 py-2 rounded-lg mt-2"
+                  >
                     Remove
                   </button>
                 </li>
