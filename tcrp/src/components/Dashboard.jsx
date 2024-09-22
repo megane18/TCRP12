@@ -3,6 +3,7 @@ import { Menu, ChevronLeft, ChevronRight } from "lucide-react";
 import { FaInstagram, FaYoutube, FaLinkedin, FaFacebook } from "react-icons/fa";
 import Footer from "./Footer";
 import axios from "axios";
+import { AddToCalendarButton } from "add-to-calendar-button-react";
 
 const CRPWebsite = () => {
   const [events, setEvents] = useState([]);
@@ -37,6 +38,13 @@ const CRPWebsite = () => {
     setActiveEventIndex(
       (prevIndex) => (prevIndex - 1 + events.length) % events.length
     );
+  };
+
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
   };
 
   return (
@@ -82,13 +90,22 @@ const CRPWebsite = () => {
                   <p className="mb-4 text-gray-600">
                     {featuredEvent.description}
                   </p>
-                  <div className="flex gap-4">
-                    <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">
+                  <div className="flex gap-4 align-middle flex-row items-center">
+                    <button className="bg-blue-600 text-white px-4 h-full rounded hover:bg-blue-700 transition duration-300 ">
                       Sign up for event
                     </button>
-                    <button className="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition duration-300">
-                      Remind Me
-                    </button>
+                    <AddToCalendarButton
+                      label="Remind Me"
+                      size="6|4"
+                      name={featuredEvent.name}
+                      description={featuredEvent.description}
+                      startDate={formatDate(new Date(featuredEvent.start_date))}
+                      options={["Apple", "Google", "Yahoo", "iCal"]}
+                      timeZone="America/Los_Angeles"
+                      hideCheckmark
+                      forceOverlay
+                      hideBackground
+                    ></AddToCalendarButton>
                   </div>
                 </div>
               </div>
@@ -131,13 +148,24 @@ const CRPWebsite = () => {
                         <p className="mb-4 text-gray-600 text-sm">
                           {event.description}
                         </p>
-                        <div className="flex justify-between">
-                          <button className="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition duration-300">
+                        <div className="flex gap-4 items-center">
+                          <button className="bg-blue-600 text-white px-4 py-3 rounded text-sm hover:bg-blue-700 transition duration-300">
                             Sign up
                           </button>
-                          <button className="bg-gray-200 text-gray-800 px-3 py-1 rounded text-sm hover:bg-gray-300 transition duration-300">
+                          <AddToCalendarButton
+                            label="Remind Me"
+                            size="6|4"
+                            name={event.name}
+                            description={event.description}
+                            startDate={formatDate(new Date(event.start_date))}
+                            options={["Apple", "Google", "Yahoo", "iCal"]}
+                            timeZone="America/Los_Angeles"
+                            forceOverlay
+                            hideBackground
+                          ></AddToCalendarButton>
+                          {/* <button className="bg-gray-200 text-gray-800 px-3 py-1 rounded text-sm hover:bg-gray-300 transition duration-300">
                             Remind Me
-                          </button>
+                          </button> */}
                         </div>
                       </div>
                     </div>
