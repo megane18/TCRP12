@@ -112,6 +112,8 @@ const AdminDashboard = () => {
             + Send Mass Communication
           </button>
         </Link>
+
+        {/* Event Input Section */}
         <Popup
           trigger={
             <button className="bg-gray-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-gray-600">
@@ -148,14 +150,14 @@ const AdminDashboard = () => {
                       placeholder="Enter event type (e.g., meeting, conference)"
                       className="border border-gray-300 p-2 rounded-lg w-full mb-4 bg-gray-100"
                     />
-                    <input
-                      type="text"
+                    <textarea
                       name="description"
+                      className=" text-black min-h-20 w-full rounded-lg p-2 bg-gray-100 mb-4"
                       value={newEvent.description}
-                      onChange={handleInputChange}
                       placeholder="Enter event description"
-                      className="border border-gray-300 p-2 rounded-lg w-full mb-4 bg-gray-100"
+                      onChange={handleInputChange}
                     />
+
                     <input
                       type="datetime-local"
                       name="start_date"
@@ -176,51 +178,6 @@ const AdminDashboard = () => {
           )}
         </Popup>
       </div>
-
-      {/* Event Input Section */}
-      {/* <div className="mb-8 flex justify-center">
-        <div className="w-1/2 text-black">
-            <h2 className="text-2xl font-bold text-black mb-4">Add New Event</h2>
-            <div className="bg-white p-6 shadow-md rounded-lg">
-            <input
-                type="text"
-                name="name"
-                value={newEvent.name}
-                onChange={handleInputChange}
-                placeholder="Enter event name"
-                className="border border-gray-300 p-2 rounded-lg w-full mb-4 bg-gray-100"
-            />
-            <input
-                type="text"
-                name="type"
-                value={newEvent.type}
-                onChange={handleInputChange}
-                placeholder="Enter event type (e.g., meeting, conference)"
-                className="border border-gray-300 p-2 rounded-lg w-full mb-4 bg-gray-100"
-            />
-            <input
-                type="text"
-                name="description"
-                value={newEvent.description}
-                onChange={handleInputChange}
-                placeholder="Enter event description"
-                className="border border-gray-300 p-2 rounded-lg w-full mb-4 bg-gray-100"
-            />
-            <input
-                type="datetime-local"
-                name="start_date"
-                value={newEvent.start_date}
-                onChange={handleInputChange}
-                className="border border-gray-300 p-2 rounded-lg w-full mb-4 bg-gray-100 text-gray-400"
-            />
-            <button
-                onClick={handleAddEvent}
-                className="bg-blue-500 text-white px-4 py-2 rounded-lg">
-                Add Event
-            </button>
-            </div>
-        </div>
-      </div> */}
 
       {/* Upcoming Events Section */}
       <div className="mb-8 flex justify-center">
