@@ -37,3 +37,4 @@ class Event(Base):
     filename = Column(String, nullable=True)
 
     class Config:
+        orm_mode=True
