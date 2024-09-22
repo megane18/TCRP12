@@ -35,3 +35,11 @@ class Event(Base):
     add_date = Column(TIMESTAMP(timezone=True), nullable=False, server_default=func.now())  # Set default to current time
     start_date = Column(TIMESTAMP(timezone=True), nullable=False)
     
+class EventParticipant(Base):
+    __tablename__ = "eventParticipants"
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, index=True, nullable=False)
+    email = Column(String, index=True, nullable=False)
+    event_id = Column(Integer, ForeignKey('events.id'), nullable=False)
+    
+    

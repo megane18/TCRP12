@@ -5,7 +5,7 @@ import Footer from './Footer';
 
 
 const CRPWebsite = () => {
-  
+
 const Modal = ({ show, handleClose, children }) => {
   if (!show) return null;
 
@@ -29,16 +29,19 @@ const Modal = ({ show, handleClose, children }) => {
       title: 'Lorem ipsum dolor',
       description: 'Lorem ipsum dolor sit amet consectetur. Sapien egestas adipiscing et pharetra nisi. Fusce vitae lectus ornare mauris. Lacinia pharetra aenean laoreet morbi vulputate malesuada nisl velit. Adipiscing s',
       image: 'https://picsum.photos/400/300',
+      id:14,
     },
     {
       title: 'Event 2 Title',
       description: 'Description for Event 2. Sapien egestas adipiscing et pharetra nisi. Fusce vitae lectus ornare mauris.',
       image: 'https://picsum.photos/400/300',
+      id:15,
     },
     {
       title: 'Event 3 Title',
       description: 'Description for Event 3. Fusce vitae lectus ornare mauris. Lacinia pharetra aenean laoreet morbi vulputate.',
       image: 'https://picsum.photos/400/300',
+      id:16
     },
   ];
 
@@ -46,10 +49,43 @@ const Modal = ({ show, handleClose, children }) => {
   const featuredEvent = events[activeEventIndex];
   const [showModal, setShowModal] = useState(false);
 
+ let selectedEventId="";
 
-  const handleOpenModal = () => setShowModal(true);
+ function setSelectedEvent(eventId)
+ {
+  selectedEventId=eventId;
+ }
+  function handleOpenModal(eventId) {
+    setShowModal(true);
+    setSelectedEvent(eventId);
+  }
   const handleCloseModal = () => setShowModal(false);
 
+  const  submitEvent= async()=>
+  {
+    const name = document.querySelector('input[placeholder="Your Name"]').value;
+    const email = document.querySelector('input[placeholder="Your Email"]').value; 
+     
+  
+  
+  
+    try {
+      const response = await fetch('http://localhost:8000/events/participants', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, event_Id: selectedEventId }) // Include event ID
+      });
+  
+      if (response.ok) {
+        alert('Successfully signed up for the event!');
+        handleCloseModal(); // Close the modal after successful signup
+      } else {
+        alert('Error signing up. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   const nextEvent = () => {
     setActiveEventIndex((prevIndex) => (prevIndex + 1) % events.length);
@@ -85,7 +121,7 @@ const Modal = ({ show, handleClose, children }) => {
                 <h3 className="text-2xl font-bold mb-2 text-gray-800">{featuredEvent.title}</h3>
                 <p className="mb-4 text-gray-600">{featuredEvent.description}</p>
                 <div className="flex gap-4">
-                  <button onClick={handleOpenModal} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">
+                  <button onClick={()=>handleOpenModal(featuredEvent.id)} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">
                     Sign up for event
                   </button>
                   <button className="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition duration-300">
@@ -107,7 +143,7 @@ const Modal = ({ show, handleClose, children }) => {
                     <h3 className="text-xl font-bold mb-2 text-gray-800">{event.title}</h3>
                     <p className="mb-4 text-gray-600 text-sm">{event.description}</p>
                     <div className="flex justify-between">
-                      <button onClick={handleOpenModal} className="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition duration-300">Sign up</button>
+                      <button onClick={()=>handleOpenModal(event.id)} className="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition duration-300">Sign up</button>
                       <button className="bg-gray-200 text-gray-800 px-3 py-1 rounded text-sm hover:bg-gray-300 transition duration-300">Remind Me</button>
                     </div>
                   </div>
@@ -129,7 +165,7 @@ const Modal = ({ show, handleClose, children }) => {
               placeholder="Your Email"
               className="w-full p-2 mt-4 border rounded"
             />
-            <button
+            <button onClick={submitEvent}
               className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300"
             >
               Submit
