@@ -37,6 +37,17 @@ const Header = ({ footerRef }) => {
     }
   };
 
+  // Close menu after a link is clicked
+  const handleMenuItemClick = () => {
+    setIsMenuOpen(false);
+  };
+
+  // Handle both scroll to footer and close menu when "Contact" is clicked
+  const handleContactClick = () => {
+    handleScrollToFooter();
+    handleMenuItemClick();
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 bg-white shadow-md z-30">
       <div className="container mx-auto flex justify-between items-center p-0">
@@ -51,11 +62,12 @@ const Header = ({ footerRef }) => {
             <a onClick={handleScrollToFooter} className="text-gray-600 hover:text-blue-600">
               Contact
             </a>
+            <Link to="/signup" className="text-gray-600 hover:text-blue-600">Sign Up</Link>
           </nav>
 
           <button 
             onClick={toggleMenu} 
-            className="MenuButton focus:outline-none bg-gray-100 border-2 border-gray-100 hover:border-gray-200 rounded-md p-2"
+            className="MenuButton focus:outline-none bg-gray-100 border-2 border-gray-100 hover:border-gray-200 rounded-md p-2 md:hidden"
           >
             <Menu className="text-gray-600" size={24} />
           </button>
@@ -63,12 +75,25 @@ const Header = ({ footerRef }) => {
           {isMenuOpen && (
             <nav 
               ref={menuRef} // Attach ref to the menu
-              className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50"
+              className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 md:hidden"
               style={{ top: 'calc(100% + 8px)' }} // Ensures the dropdown appears below the button
             >
               <ul>
                 <li>
-                  <Link to="/signup" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Sign Up</Link>
+                  <Link to="/" className="block px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={handleMenuItemClick}>Home</Link>
+                </li>
+                <li>
+                  <a href="https://www.communityrestorationproject.org/about" className="block px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={handleMenuItemClick}>About</a>
+                </li>
+                <li>
+                  <Link to="/dashboard" className="block px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={handleMenuItemClick}>Events</Link>
+                </li>
+                <li>
+                  {/* Use the new handleContactClick to handle both actions */}
+                  <a onClick={handleContactClick} className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Contact</a>
+                </li>
+                <li>
+                  <Link to="/signup" className="block px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={handleMenuItemClick}>Sign Up</Link>
                 </li>
               </ul>
             </nav>
