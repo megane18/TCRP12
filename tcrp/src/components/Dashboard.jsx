@@ -118,24 +118,27 @@ const CRPWebsite = () => {
                       {featuredEvent.description}
                     </p>
                   </Link>
-                    <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
-                      <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">
-                        Sign up for event
-                      </button>
+                  <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
+                    <button
+                      onClick={handleOpenModal} // Added onClick handler
+                      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300"
+                    >
+                      Sign up for event
+                    </button>
 
-                      <AddToCalendarButton
-                        label="Remind Me"
-                        options={["Apple", "Google", "Yahoo", "iCal"]}
-                        timeZone="America/Los_Angeles"
-                        name={featuredEvent.name}
-                        description={featuredEvent.description}
-                        location={featuredEvent.location}
-                        startDate={formatDate(new Date(featuredEvent.start_date))}
-                        hideCheckmark
-                        forceOverlay
-                        hideBackground
-                      />
-                    </div>
+                    <AddToCalendarButton
+                      label="Remind Me"
+                      options={["Apple", "Google", "Yahoo", "iCal"]}
+                      timeZone="America/Los_Angeles"
+                      name={featuredEvent.name}
+                      description={featuredEvent.description}
+                      location={featuredEvent.location}
+                      startDate={formatDate(new Date(featuredEvent.start_date))}
+                      hideCheckmark
+                      forceOverlay
+                      hideBackground
+                    />
+                  </div>
                 </div>
               </div>
             </section>
@@ -160,69 +163,63 @@ const CRPWebsite = () => {
                   Events and Posts
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {events.map((event) => (
-                  <div key={event.id} className="flex flex-col">
-                    {/* Link wraps the entire card */}
-                    <Link to={`/events/${event.id}`} className="flex-1">
-                      <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 cursor-pointer">
-                        <img
-                          src={event.image}
-                          alt={event.name}
-                          className="w-full h-48 object-cover"
-                        />
-                        <div className="p-6">
-                          <h3 className="text-xl font-bold mb-2 text-gray-800 min-h-14">
-                            {event.name}
-                          </h3>
-                          <p className="mb-4 text-gray-600 text-sm">
-                            {event.description}
-                          </p>
+                  {events.map((event) => (
+                    <div key={event.id} className="flex flex-col">
+                      {/* Link wraps the entire card */}
+                      <Link to={`/events/${event.id}`} className="flex-1">
+                        <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 cursor-pointer">
+                          <img
+                            src={event.image}
+                            alt={event.name}
+                            className="w-full h-48 object-cover"
+                          />
+                          <div className="p-6">
+                            <h3 className="text-xl font-bold mb-2 text-gray-800 min-h-14">
+                              {event.name}
+                            </h3>
+                            <p className="mb-4 text-gray-600 text-sm">
+                              {event.description}
+                            </p>
+                          </div>
                         </div>
+                      </Link>
+
+                      {/* Action buttons below the card */}
+                      <div className="mt-4 flex flex-col sm:flex-row gap-2 items-center justify-center">
+                        <button
+                          onClick={handleOpenModal} // Added onClick handler
+                          className="bg-blue-600 text-white px-4 py-3 rounded text-sm hover:bg-blue-700 transition duration-300"
+                        >
+                          Sign up
+                        </button>
+                        <AddToCalendarButton
+                          label="Remind Me"
+                          // Removed invalid size prop
+                          name={event.name}
+                          className="m-0"
+                          description={event.description}
+                          startDate={formatDate(new Date(event.start_date))}
+                          options={["Apple", "Google", "Yahoo", "iCal"]}
+                          timeZone="America/Los_Angeles"
+                          forceOverlay
+                          hideBackground
+                        />
                       </div>
-                    </Link>
-                    
-                    {/* Action buttons below the card */}
-                    <div className="mt-4 flex flex-col sm:flex-row gap-2 items-center justify-center">
-                      <button className="bg-blue-600 text-white px-4 py-3 rounded text-sm hover:bg-blue-700 transition duration-300">
-                        Sign up
-                      </button>
-                      <AddToCalendarButton
-                        label="Remind Me"
-                        size="6|4"
-                        name={event.name}
-                        className="m-0"
-                        description={event.description}
-                        startDate={formatDate(new Date(event.start_date))}
-                        options={["Apple", "Google", "Yahoo", "iCal"]}
-                        timeZone="America/Los_Angeles"
-                        forceOverlay
-                        hideBackground
-                      />
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
               </section>
               <Modal
                 show={showModal}
                 handleClose={handleCloseModal}
-                style={{
-                  overlay: {
-                    // backgroundColor: 'rgba(0, 0, 0, 0.5)', // Modal backdrop
-                    zIndex: 9998,
-                  },
-                  content: {
-                    backgroundColor: "white", // Modal content background
-                    zIndex: 9999, // Modal z-index
-                    position: "relative",
-                    padding: "20px",
-                  },
-                }}
+                // Removed unused style prop
               >
                 <h2 className="text-xl font-bold text-black">
                   Sign Up for Event
                 </h2>
-                <p className="text-black">Please enter your details to sign up for the event.</p>
+                <p className="text-black">
+                  Please enter your details to sign up for the event.
+                </p>
                 <div className="text-black">
                   <input
                     type="text"
