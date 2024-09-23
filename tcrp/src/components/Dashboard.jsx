@@ -6,6 +6,7 @@ import dummyEvents from "../assets/events";
 import { Link } from "react-router-dom"; // Import Link
 
 const CRPWebsite = () => {
+  // Modal Component
   const Modal = ({ show, handleClose, children }) => {
     if (!show) return null;
 
@@ -24,14 +25,8 @@ const CRPWebsite = () => {
     );
   };
 
+  // State Management
   const [showModal, setShowModal] = useState(false);
-  function handleOpenModal() {
-    setShowModal(true);
-  }
-  const handleCloseModal = () => setShowModal(false);
-
-  const submitSignEvent = () => setShowModal(false);
-
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -46,7 +41,7 @@ const CRPWebsite = () => {
 
   const fetchEvents = async () => {
     try {
-      // Since we're using dummyEvents, no need to fetch from API
+      // Using dummyEvents, no need to fetch from API
       setEvents(dummyEvents);
       setActiveEventIndex(0);
       setLoading(false);
@@ -57,6 +52,7 @@ const CRPWebsite = () => {
     }
   };
 
+  // Navigation Handlers
   const nextEvent = () => {
     setActiveEventIndex((prevIndex) => (prevIndex + 1) % fEvents.length);
   };
@@ -67,6 +63,12 @@ const CRPWebsite = () => {
     );
   };
 
+  // Modal Handlers
+  const handleOpenModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+  const submitSignEvent = () => setShowModal(false);
+
+  // Date Formatting
   const formatDate = (date) => {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
@@ -120,8 +122,8 @@ const CRPWebsite = () => {
                   </Link>
                   <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
                     <button
-                      onClick={handleOpenModal} // Added onClick handler
-                      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300"
+                      onClick={handleOpenModal}
+                      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300 h-10"
                     >
                       Sign up for event
                     </button>
@@ -146,9 +148,7 @@ const CRPWebsite = () => {
 
           {/* Other Events and Posts */}
           {loading && (
-            <p className="text-center text-gray-500">
-              Loading event details...
-            </p>
+            <p className="text-center text-gray-500">Loading event details...</p>
           )}
           {error && <p className="text-center text-red-500">{error}</p>}
 
@@ -165,9 +165,8 @@ const CRPWebsite = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {events.map((event) => (
                     <div key={event.id} className="flex flex-col">
-                      {/* Link wraps the entire card */}
-                      <Link to={`/events/${event.id}`} className="flex-1">
-                        <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 cursor-pointer">
+                      <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+                        <Link to={`/events/${event.id}`} className="block">
                           <img
                             src={event.image}
                             alt={event.name}
@@ -181,42 +180,35 @@ const CRPWebsite = () => {
                               {event.description}
                             </p>
                           </div>
-                        </div>
-                      </Link>
+                        </Link>
 
-                      {/* Action buttons below the card */}
-                      <div className="mt-4 flex flex-col sm:flex-row gap-2 items-center justify-center">
-                        <button
-                          onClick={handleOpenModal} // Added onClick handler
-                          className="bg-blue-600 text-white px-4 py-3 rounded text-sm hover:bg-blue-700 transition duration-300"
-                        >
-                          Sign up
-                        </button>
-                        <AddToCalendarButton
-                          label="Remind Me"
-                          // Removed invalid size prop
-                          name={event.name}
-                          className="m-0"
-                          description={event.description}
-                          startDate={formatDate(new Date(event.start_date))}
-                          options={["Apple", "Google", "Yahoo", "iCal"]}
-                          timeZone="America/Los_Angeles"
-                          forceOverlay
-                          hideBackground
-                        />
+                        {/* Action buttons inside the card */}
+                        <div className="flex justify-center p-6 items-center">
+                          <button
+                            onClick={handleOpenModal}
+                            className="w-24 bg-blue-600 text-white mr-10 rounded text-sm hover:bg-blue-700 transition duration-300 h-11 items-center justify-center"
+                          >
+                            Sign up
+                          </button>
+                          <AddToCalendarButton
+                            label="Remind Me"
+                            name={event.name}
+                            className="w-full"
+                            description={event.description}
+                            startDate={formatDate(new Date(event.start_date))}
+                            options={["Apple", "Google", "Yahoo", "iCal"]}
+                            timeZone="America/Los_Angeles"
+                            forceOverlay
+                            hideBackground
+                          />
+                        </div>
                       </div>
                     </div>
                   ))}
                 </div>
               </section>
-              <Modal
-                show={showModal}
-                handleClose={handleCloseModal}
-                // Removed unused style prop
-              >
-                <h2 className="text-xl font-bold text-black">
-                  Sign Up for Event
-                </h2>
+              <Modal show={showModal} handleClose={handleCloseModal}>
+                <h2 className="text-xl font-bold text-black">Sign Up for Event</h2>
                 <p className="text-black">
                   Please enter your details to sign up for the event.
                 </p>
@@ -244,7 +236,7 @@ const CRPWebsite = () => {
                 </div>
                 <button
                   onClick={submitSignEvent}
-                  className="mt-4 bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300 mr-4"
+                  className="mt-4 bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-800 transition duration-300 mr-4"
                 >
                   Submit
                 </button>
