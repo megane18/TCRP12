@@ -265,16 +265,19 @@ const AdminDashboard = () => {
                         {event.description}
                       </p>
                       <div className="gap-4 items-center flex justify-end">
-                        <Trash2Icon
-                          size={24}
-                          color="red"
+                        <button
                           onClick={() => handleRemoveEvent(event.id)}
-                        />
-                        <UserPenIcon
-                          size={24}
-                          color="blue"
-                          onClick={() => handleRemoveEvent(event.id)}
-                        />
+                          className="bg-white border-1 border-black flex items-center justify-center p-2 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-300"
+                        >
+                          <Trash2Icon size={24} color="red" />
+                        </button>
+
+                        <button
+                          onClick={() => handleEditEvent(event.id)} // Update function name as needed
+                          className="bg-white border-1 border-black  flex items-center justify-center p-2 rounded-md hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+                        >
+                          <UserPenIcon size={24} color="blue" />
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -330,11 +333,11 @@ const AdminDashboard = () => {
                           Assign to Staff
                         </button>
                         {!issue.completed && (
-                          <button className="bg-transparent">
-                            <CircleCheck
-                              className="text-red-500 flex self-center"
-                              size={24}
-                            />
+                          <button
+                            onClick={() => handleCheck(event.id)} // Replace with your desired function
+                            className="bg-white border-1 border-black flex items-center justify-center p-2 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-300"
+                          >
+                            <CircleCheck className="text-red-500" size={24} />
                           </button>
                         )}
                       </div>

@@ -53,10 +53,6 @@ const CRPWebsite = () => {
     <div className="bg-gradient-to-b from-blue-50 to-purple-50 min-h-screen">
       <div className="max-w-7xl px-4 pb-4 m-auto">
         <main className="py-8">
-          {/* <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center text-gray-800 mt-12">
-            Community Restoration Project
-          </h1> */}
-
           {/* Featured Events Section */}
           {activeEventIndex != null && (
             <section className="mb-12 mt-16">
