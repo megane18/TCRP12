@@ -259,12 +259,15 @@ const AdminDashboard = () => {
                       className="w-full h-48 object-cover"
                     />
                     <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-gray-800">
-                        {event.name}
-                      </h3>
-                      <p className="mb-4 text-gray-600 text-sm">
-                        {event.description}
-                      </p>
+                      <div className="min-h-32">
+
+                        <h3 className="text-xl font-bold mb-2 text-gray-800">
+                          {event.name}
+                        </h3>
+                        <p className="mb-4 text-gray-600 text-sm">
+                          {event.description}
+                        </p>
+                      </div>
                       <div className="gap-4 items-center flex justify-end">
                         <button
                           onClick={() => handleRemoveEvent(event.id)}
