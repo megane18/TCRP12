@@ -15,7 +15,9 @@ const SendMassCommunication = ({ close }) => {
   const [selectedValue, setSelectedValue] = useState("All Events");
   const [channel, setChannel] = useState([]);
   const [file, setFile] = useState(null);
-  const [scheduleDate, setScheduleDate] = useState(new Date());
+  const [scheduleDate, setScheduleDate] = useState(
+    new Date().toISOString().slice(0, 16)
+  );
 
   const options = ["All Events", "Volunteer Day", "H.A.N.D.S"];
   const groups = ["All Members", "New Members", "Event Attendees"];
@@ -229,6 +231,16 @@ const SendMassCommunication = ({ close }) => {
           </div>
         </div>
 
+        <input
+          type="datetime-local"
+          name="Date"
+          value={scheduleDate} // Make sure scheduleDate is in "yyyy-MM-dd" format
+          onChange={(event) => {
+            setScheduleDate(event.target.value); // Use event.target.value to get the date string
+          }}
+          className="border border-gray-300 p-2 rounded-lg w-full mb-4 bg-gray-100 text-gray-500"
+        />
+
         <div className="flex flex-row gap-2 mt-4">
           <div className="justify-start flex">
             <button
@@ -237,16 +249,6 @@ const SendMassCommunication = ({ close }) => {
             >
               Send
             </button>
-          </div>
-
-          <div className="flex">
-            <DatePicker
-              selected={scheduleDate}
-              onChange={(date) => setScheduleDate(date)}
-              showTimeSelect
-              className="bg-blue-600 rounded-md w-full p-2 text-white"
-              dateFormat="MMMM d, yyyy h:mm aa"
-            />
           </div>
         </div>
       </form>

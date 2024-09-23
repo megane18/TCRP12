@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { AddToCalendarButton } from "add-to-calendar-button-react";
 import dummyEvents from "../assets/events";
-import { Link } from 'react-router-dom'; // Import Link
+import { Link } from "react-router-dom"; // Import Link
 
 const CRPWebsite = () => {
   const [events, setEvents] = useState([]);
@@ -56,7 +56,7 @@ const CRPWebsite = () => {
           {activeEventIndex != null && (
             <section className="mb-12 mt-16">
               <div className="bg-white rounded-lg shadow-lg pt-5">
-                <h2 className="text-3xl text-center text-gray-800 font-light mb-5">
+                <h2 className="text-3xl text-center text-gray-800 font-bold mb-5">
                   Featured Events
                 </h2>
                 <div className="relative">
@@ -130,15 +130,13 @@ const CRPWebsite = () => {
           {!loading && !error && events.length > 0 && (
             <>
               <section className="mb-12">
-                <h2 className="text-3xl font-light mb-6 text-center text-gray-800">
+                <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
                   Events and Posts
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {events.map((event, index) => (
                     <Link to={`/events/${event.id}`} key={event.id}>
-                      <div
-                        className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 cursor-pointer"
-                      >
+                      <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 cursor-pointer">
                         <img
                           src={event.image}
                           alt={event.name}
