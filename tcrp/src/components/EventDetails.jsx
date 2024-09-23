@@ -56,7 +56,7 @@ const EventDetails = () => {
     ];
 
     return (
-        <div className="w-full min-h-screen bg-gray-50 flex items-center justify-center p-4 mt-16 pb-10">
+        <div className="w-full min-h-screen bg-gray-50 flex justify-center p-4 mt-16 pb-10">
             <div className="w-full max-w-7xl bg-white shadow-xl rounded-lg p-6 mt-2">
                 <h2 className="text-3xl font-light text-black mb-3">{event.name} Details</h2>
                 <img src={event.image} alt={event.name} className="w-full h-80 object-cover rounded-lg" />

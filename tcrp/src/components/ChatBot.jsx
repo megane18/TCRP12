@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { CSSProperties } from "react";
 import DotLoader from "react-spinners/DotLoader";
 
 const override = {
@@ -30,6 +29,7 @@ const ChatBot = () => {
     // Add the response message to chat
     const botMessage = { sender: "bot", text: data.message };
     setMessages((prevMessages) => [...prevMessages, botMessage]);
+
     setLoading(false);
     setInputMessage(""); // Clear the input field
   };
