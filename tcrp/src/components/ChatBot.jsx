@@ -39,18 +39,18 @@ const ChatBot = () => {
 
   return (
     <div className="chat-container">
-      <div className="chat-box">
+      <div className="chat-box text-black">
         {messages.map((msg, index) => (
           <div
             key={index}
             className={`chat-message ${msg.sender === 'user' ? 'user-message' : 'bot-message'}`}
           >
             {msg.sender === 'bot' ? (
-              <div className="bot-message-markdown">
+              <div className="bot-message-markdown text-left">
                 <ReactMarkdown>{msg.text}</ReactMarkdown> {/* Render markdown for bot responses */}
               </div>
             ) : (
-              <div className="user-message-text">
+              <div className="user-message-text font-bold text-right">
                 {msg.text} {/* Render plain text for user messages */}
               </div>
             )}
