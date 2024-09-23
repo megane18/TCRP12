@@ -2,23 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
-import { Link } from "react-router-dom";
 import pendingRequests from "../assets/pendingrequest";
 import dummyEvents from "../assets/events";
-import {
-  CircleCheck,
-  DeleteIcon,
-  Edit2Icon,
-  Trash2Icon,
-  UserPenIcon,
-  XIcon,
-} from "lucide-react";
+import { CircleCheck, Trash2Icon, UserPenIcon, XIcon } from "lucide-react";
+import SendMassCommunication from "./SendMassCommunication";
 
 const contentStyle = {
   background: "rgba(255,255,255)",
   width: "80%",
   maxWidth: "500px",
-  padding: "5px",
+  padding: "1px",
   border: "none",
   borderRadius: "10px",
 };
@@ -39,7 +32,7 @@ const AdminDashboard = () => {
     name: "",
     type: "",
     description: "",
-    start_date: "",
+    start_date: new Date().toISOString().slice(0, 16),
   });
 
   useEffect(() => {
@@ -138,17 +131,29 @@ const AdminDashboard = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-1/2 mb-4">
-          <Link to="/send-mass-communication">
-            <button className="bg-gray-500 text-white rounded-lg shadow-md hover:bg-gray-600 text-sm w-fit">
-              + Send Mass Communication
-            </button>
-          </Link>
+        <div className="flex flex-col md:flex-row gap-2 mb-8">
+          <Popup
+            trigger={
+              <button className="flex items-center justify-center px-4 py-2 bg-gray-500 text-white rounded hover:bg-blue-500 transition-all duration-300 text-base md:text-lg">
+                <span className="mr-2">📤</span>
+                <span>Send Mass Communication</span>
+              </button>
+            }
+            {...{
+              contentStyle,
+              overlayStyle,
+            }}
+            position="center center"
+            modal
+          >
+            {(close) => <SendMassCommunication close={close} />}
+          </Popup>
 
           <Popup
             trigger={
-              <button className="bg-gray-500 text-white rounded-lg shadow-md hover:bg-gray-600 text-sm w-fit">
-                + Create Event
+              <button className="flex items-center justify-center px-4 py-2 bg-gray-500 text-white rounded hover:bg-blue-500 transition-all duration-300 text-base md:text-lg">
+                <span className="mr-2">✏️</span>
+                <span>Create Event</span>
               </button>
             }
             {...{
@@ -159,7 +164,7 @@ const AdminDashboard = () => {
             modal
           >
             {(close) => (
-              <div className="justify-center  rounded-lg ">
+              <div className="justify-center  rounded-lg  bg-gradient-to-b from-blue-50 to-purple-50">
                 <XIcon
                   size={24}
                   color="black"
@@ -182,7 +187,7 @@ const AdminDashboard = () => {
                         value={newEvent.name}
                         onChange={handleInputChange}
                         placeholder="Enter event name"
-                        className="border border-gray-300 p-2 rounded-lg w-full mb-4 bg-gray-100 flex "
+                        className="border border-gray-300 bg-gray-100 p-2 rounded-lg w-full mb-4  flex "
                       />
                       <input
                         type="text"
@@ -260,16 +265,19 @@ const AdminDashboard = () => {
                         {event.description}
                       </p>
                       <div className="gap-4 items-center flex justify-end">
-                        <Trash2Icon
-                          size={24}
-                          color="red"
+                        <button
                           onClick={() => handleRemoveEvent(event.id)}
-                        />
-                        <UserPenIcon
-                          size={24}
-                          color="blue"
-                          onClick={() => handleRemoveEvent(event.id)}
-                        />
+                          className="bg-white border-1 border-black flex items-center justify-center p-2 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-300"
+                        >
+                          <Trash2Icon size={24} color="red" />
+                        </button>
+
+                        <button
+                          onClick={() => handleEditEvent(event.id)} // Update function name as needed
+                          className="bg-white border-1 border-black  flex items-center justify-center p-2 rounded-md hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+                        >
+                          <UserPenIcon size={24} color="blue" />
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -325,11 +333,11 @@ const AdminDashboard = () => {
                           Assign to Staff
                         </button>
                         {!issue.completed && (
-                          <button className="bg-transparent">
-                            <CircleCheck
-                              className="text-red-500 flex self-center"
-                              size={24}
-                            />
+                          <button
+                            onClick={() => handleCheck(event.id)} // Replace with your desired function
+                            className="bg-white border-1 border-black flex items-center justify-center p-2 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-300"
+                          >
+                            <CircleCheck className="text-red-500" size={24} />
                           </button>
                         )}
                       </div>

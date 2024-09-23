@@ -27,8 +27,14 @@ async def get_gemini_repsonse(input):
 
     Financial Achievement Club
     Once placed in permanent housing, families and individuals are given the opportunity to join the Financial Achievement Club (FAC). Through the FAC, CRP incentivizes families by offering a monetary match for meeting goals set for building savings, increasing credit scores and income, and attending financial workshops. """
-    input=context+input
-    response=model.generate_content(input,generation_config=genai.GenerationConfig(max_output_tokens=1000,),)
+    chat = model.start_chat(
+    history=[
+        {"role": "user", "parts": context},
+        {"role": "model", "parts": "Great to meet you. What would you like to know?"},
+    ]
+)
+    #input=context+input
+    response=chat.send_message(input,generation_config=genai.GenerationConfig(max_output_tokens=1000,),)
     return response.text
 
 
