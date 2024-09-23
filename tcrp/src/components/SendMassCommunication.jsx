@@ -59,9 +59,8 @@ const SendMassCommunication = () => {
   };
 
   return (
-    <div className=" flex flex-col h-screen w-screen bg-gradient-to-b from-blue-50 to-purple-50 min-h-screen">
-      <Header />
-      <div className="mt-28 mx-2 flex-grow rounded-xl p-4 flex flex-col overflow-auto gap-4">
+    <div className=" flex flex-col h-screen w-screen bg-gradient-to-b from-blue-50 to-purple-50 min-h-screen items-center">
+      <div className="mt-28 mx-2 flex-grow rounded-xl p-4 flex flex-col overflow-auto gap-4 max-w-7xl w-1/2">
         <form onSubmit={handleSubmit} className="flex flex-col w-full gap-5">
           <div className="text-black flex flex-col text-start">
             <h2 className="font-bold text-3xl">Send Mass Communication</h2>
