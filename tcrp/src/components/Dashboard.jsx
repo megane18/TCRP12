@@ -51,26 +51,30 @@ const CRPWebsite = () => {
 
   return (
     <div className="bg-gradient-to-b from-blue-50 to-purple-50 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 pb-4">
+      <div className="max-w-7xl px-4 pb-4 mx-2 md:mx-20">
         <main className="py-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center text-gray-800 mt-12">
+          {/* <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center text-gray-800 mt-12">
             Community Restoration Project
-          </h1>
-
+          </h1> */}
+  
           {/* Featured Events Section */}
           {activeEventIndex != null && (
-            <section className="mb-12">
-              <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
-                Featured Events
-              </h2>
-              <div className="bg-white rounded-lg overflow-hidden shadow-lg">
+            <section className="mb-12 mt-16">
+              <div className="bg-white rounded-lg shadow-lg pt-5">
+                <h2 className="text-3xl text-center text-gray-800 font-light mb-5">
+                  Featured Events
+                </h2>
                 <div className="relative">
-                  <img
-                    src={featuredEvent.image}
-                    alt="Featured event"
-                    className="w-full h-64 md:h-96 object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-between px-4">
+                  {/* Center the image and add white space on the sides */}
+                  <div className="flex justify-center">
+                    <img
+                      src={featuredEvent.image}
+                      alt="Featured event"
+                      className="w-96 md:w-10/12 h-64 md:h-96 object-cover rounded-lg"
+                    />
+                  </div>
+                  {/* Navigation Buttons */}
+                  <div className="absolute inset-0 flex items-center justify-between px-8">
                     <button
                       onClick={prevEvent}
                       className="text-white p-2 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75"
@@ -85,18 +89,18 @@ const CRPWebsite = () => {
                     </button>
                   </div>
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex flex-col items-center justify-center">
                   <h3 className="text-2xl font-bold mb-2 text-gray-800">
                     {featuredEvent.name}
                   </h3>
-                  <p className="mb-4 text-gray-600">
+                  <p className="mb-4 text-gray-600 text-center">
                     {featuredEvent.description}
                   </p>
-                  <div className="flex gap-4 align-middle flex-row items-center">
-                    <button className="bg-blue-600 text-white px-4 h-full rounded hover:bg-blue-700 transition duration-300 ">
+                  <div className="flex gap-4 items-center justify-center">
+                    <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">
                       Sign up for event
                     </button>
-
+  
                     <AddToCalendarButton
                       label="Remind Me"
                       options={["Apple", "Google", "Yahoo", "iCal"]}
@@ -108,12 +112,13 @@ const CRPWebsite = () => {
                       hideCheckmark
                       forceOverlay
                       hideBackground
-                    ></AddToCalendarButton>
+                    />
                   </div>
                 </div>
               </div>
             </section>
           )}
+
 
           {/* Other Events and Posts */}
           {loading && (
@@ -130,7 +135,7 @@ const CRPWebsite = () => {
           {!loading && !error && events && (
             <>
               <section className="mb-12">
-                <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+                <h2 className="text-3xl font-light mb-6 text-center text-gray-800">
                   Events and Posts
                 </h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -145,13 +150,13 @@ const CRPWebsite = () => {
                         className="w-full h-48 object-cover"
                       />
                       <div className="p-6">
-                        <h3 className="text-xl font-bold mb-2 text-gray-800">
+                        <h3 className="text-xl font-bold mb-2 text-gray-800 min-h-14">
                           {event.name}
                         </h3>
                         <p className="mb-4 text-gray-600 text-sm">
                           {event.description}
                         </p>
-                        <div className="flex gap-4 items-center">
+                        <div className="flex gap-2 items-center justify-center">
                           <button className="bg-blue-600 text-white px-4 py-3 rounded text-sm hover:bg-blue-700 transition duration-300">
                             Sign up
                           </button>
@@ -159,6 +164,7 @@ const CRPWebsite = () => {
                             label="Remind Me"
                             size="6|4"
                             name={event.name}
+                            className="m-0"
                             // location={event.location}
                             description={event.description}
                             startDate={formatDate(new Date(event.start_date))}
