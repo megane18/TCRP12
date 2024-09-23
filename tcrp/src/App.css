@@ -56,9 +56,9 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 50vh; /* Reduced the height */
+  height: 50vh; /* Keeps the chatbot compact */
   width: 80%; /* Set width to 80% of the page */
-  margin: 20px auto; /* Centered horizontally */
+  margin: 100px auto; /* Adjust margin-top to bring it down */
   padding: 1rem;
   background-color: #f1f1f1;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);

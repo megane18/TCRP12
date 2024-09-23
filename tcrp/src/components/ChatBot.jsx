@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactMarkdown from 'react-markdown'; // Ensure you import react-markdown
 
 const ChatBot = () => {
   const [messages, setMessages] = useState([]);
@@ -23,7 +24,7 @@ const ChatBot = () => {
     const botMessage = { sender: 'bot', text: data.message };
     setMessages((prevMessages) => [...prevMessages, botMessage]);
 
-    setInputMessage('');  // Clear the input field
+    setInputMessage(''); // Clear the input field
   };
 
   const handleInputChange = (e) => {
@@ -44,7 +45,15 @@ const ChatBot = () => {
             key={index}
             className={`chat-message ${msg.sender === 'user' ? 'user-message' : 'bot-message'}`}
           >
-            {msg.text}
+            {msg.sender === 'bot' ? (
+              <div className="bot-message-markdown">
+                <ReactMarkdown>{msg.text}</ReactMarkdown> {/* Render markdown for bot responses */}
+              </div>
+            ) : (
+              <div className="user-message-text">
+                {msg.text} {/* Render plain text for user messages */}
+              </div>
+            )}
           </div>
         ))}
       </div>
