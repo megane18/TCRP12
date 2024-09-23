@@ -93,11 +93,11 @@ const SendMassCommunication = ({ close }) => {
           <p className="text-start text-gray-500">Message</p>
 
           <div className="border border-gray-300 rounded-lg overflow-hidden w-full max-w-2xl">
-            <Editor ref={quillRef} readOnly={readOnly} />
-            {/* <Editor ref={quillRef} className="h-64 p-4" readOnly={readOnly} /> */}
+            <Editor ref={quillRef} className="h-64 p-4" readOnly={readOnly} />
           </div>
           <style jsx>{`
             .ql-editor {
+              max-height: 100px;
               color: black;
               padding: 1rem;
               background: white;
