@@ -14,9 +14,9 @@ const CRPWebsite = () => {
           {children}
           <button
             onClick={handleClose}
-            className="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition duration-300"
+            className="mt-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-red-700 transition duration-300"
           >
-            Close
+            Cancel
           </button>
         </div>
       </div>
@@ -229,33 +229,35 @@ const CRPWebsite = () => {
                   },
                 }}
               >
-                <h2 className="text-xl font-bold">
-                  Sign Up for {featuredEvent.name}
+                <h2 className="text-xl font-bold text-black">
+                  Sign Up for Event
                 </h2>
-                <p>Please enter your details to sign up for the event.</p>
-                <input
-                  type="text"
-                  placeholder="First Name"
-                  className="w-full p-2 mt-4 border rounded"
-                />
-                <input
-                  type="text"
-                  placeholder="Last Name"
-                  className="w-full p-2 mt-4 border rounded"
-                />
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className="w-full p-2 mt-4 border rounded"
-                />
-                <input
-                  type="phone"
-                  placeholder="Your phone number"
-                  className="w-full p-2 mt-4 border rounded"
-                />
+                <p className="text-black">Please enter your details to sign up for the event.</p>
+                <div className="text-black">
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    className="w-full p-2 mt-4 border rounded bg-gray-100"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Last Name"
+                    className="w-full p-2 mt-4 border rounded bg-gray-100"
+                  />
+                  <input
+                    type="email"
+                    placeholder="Your Email"
+                    className="w-full p-2 mt-4 border rounded bg-gray-100"
+                  />
+                  <input
+                    type="phone"
+                    placeholder="Your phone number"
+                    className="w-full p-2 mt-4 border rounded bg-gray-100"
+                  />
+                </div>
                 <button
                   onClick={submitSignEvent}
-                  className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300 mr-4"
+                  className="mt-4 bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300 mr-4"
                 >
                   Submit
                 </button>
