@@ -17,7 +17,10 @@ const override = {
 };
 
 const ChatBot = ({ onClose }) => {
-  const [messages, setMessages] = useState([]);
+  // Initialize messages with the bot's greeting
+  const [messages, setMessages] = useState([
+    { sender: "bot", text: "Hi, what would you like to learn about the Community Restoration Program?" },
+  ]);
   const [inputMessage, setInputMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
@@ -76,7 +79,7 @@ const ChatBot = ({ onClose }) => {
     >
       {/* Header */}
       <div className="flex justify-between items-center p-4 bg-blue-600 text-white">
-        <span className="font-semibold">ChatBot</span>
+        <span className="font-semibold">CPR - ChatBot</span>
         <button onClick={onClose} aria-label="Close Chat">
           <FontAwesomeIcon icon={faTimes} />
         </button>
@@ -149,7 +152,7 @@ const ChatBot = ({ onClose }) => {
             value={inputMessage}
             onChange={handleInputChange}
             onKeyPress={handleKeyPress}
-            className="flex-grow p-3 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-slate-200 mr-1 text-black flex-grow p-3 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             aria-label="Message Input"
           />
           <button

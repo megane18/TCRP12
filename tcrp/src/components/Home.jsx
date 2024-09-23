@@ -18,9 +18,9 @@ const CRPHomePage = () => {
           </div>
 
           <section className="text-center mt-3 mb-8 flex justify-center">
-            <p className="text-xl text-gray-600 italic">
+            {/* <p className="text-xl text-gray-600 italic">
               Empowering communities, restoring hope, and building a brighter future together.
-            </p>
+            </p> */}
           </section>
 
           <div className="flex justify-center items-center mb-10">
