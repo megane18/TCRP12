@@ -128,19 +128,19 @@ const SignUpForm = () => {
               id="terms"
               className="mt-1 mr-2"
             />
-            <label htmlFor="terms" className="text-sm text-gray-600">
+            <label htmlFor="terms" className="text-sm text-gray-600 mb-8">
               By clicking on this box and signing up, you agree to our <a href='#'>Terms and Conditions and Privacy Policy</a>
             </label>
           </div>
 
           {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
 
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
+          <a
+            href="/dashboard"
+            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 mt-8"
           >
             Sign Up
-          </button>
+          </a>
 
          
         </form>
