@@ -5,12 +5,11 @@ import { AddToCalendarButton } from "add-to-calendar-button-react";
 import dummyEvents from "../assets/events";
 
 const CRPWebsite = () => {
-
   const Modal = ({ show, handleClose, children }) => {
     if (!show) return null;
-  
+
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div className="bg-white p-6 rounded shadow-lg w-96">
           {children}
           <button
@@ -124,7 +123,10 @@ const CRPWebsite = () => {
                     {featuredEvent.description}
                   </p>
                   <div className="flex gap-4 items-center justify-center">
-                    <button onClick={handleOpenModal} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">
+                    <button
+                      onClick={handleOpenModal}
+                      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300"
+                    >
                       Sign up for event
                     </button>
 
@@ -183,7 +185,10 @@ const CRPWebsite = () => {
                           {event.description}
                         </p>
                         <div className="flex gap-2 items-center justify-center">
-                          <button onClick={handleOpenModal} className="bg-blue-600 text-white px-4 py-3 rounded text-sm hover:bg-blue-700 transition duration-300">
+                          <button
+                            onClick={handleOpenModal}
+                            className="bg-blue-600 text-white px-4 py-3 rounded text-sm hover:bg-blue-700 transition duration-300"
+                          >
                             Sign up
                           </button>
                           <AddToCalendarButton
@@ -208,48 +213,53 @@ const CRPWebsite = () => {
                   ))}
                 </div>
               </section>
-              <Modal show={showModal} handleClose={handleCloseModal}
-              style={{
-                overlay: {
-                 // backgroundColor: 'rgba(0, 0, 0, 0.5)', // Modal backdrop
-                  zIndex: 9998
-                },
-                content: {
-                  backgroundColor: 'white',  // Modal content background
-                  zIndex: 9999,              // Modal z-index
-                  position: 'relative',
-                  padding: '20px',
-                }
-              }}
+              <Modal
+                show={showModal}
+                handleClose={handleCloseModal}
+                style={{
+                  overlay: {
+                    // backgroundColor: 'rgba(0, 0, 0, 0.5)', // Modal backdrop
+                    zIndex: 9998,
+                  },
+                  content: {
+                    backgroundColor: "white", // Modal content background
+                    zIndex: 9999, // Modal z-index
+                    position: "relative",
+                    padding: "20px",
+                  },
+                }}
               >
-            <h2 className="text-xl font-bold">Sign Up for {featuredEvent.title}</h2>
-            <p>Please enter your details to sign up for the event.</p>
-            <input
-              type="text"
-              placeholder="First Name"
-              className="w-full p-2 mt-4 border rounded"
-            />
-            <input
-              type="text"
-              placeholder="Last Name"
-              className="w-full p-2 mt-4 border rounded"
-            />
-            <input
-              type="email"
-              placeholder="Your Email"
-              className="w-full p-2 mt-4 border rounded"
-            />
-            <input
-              type="phone"
-              placeholder="Your phone number"
-              className="w-full p-2 mt-4 border rounded"
-            />
-            <button onClick={submitSignEvent}
-              className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300"
-            >
-              Submit
-            </button>
-          </Modal>
+                <h2 className="text-xl font-bold">
+                  Sign Up for {featuredEvent.title}
+                </h2>
+                <p>Please enter your details to sign up for the event.</p>
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  className="w-full p-2 mt-4 border rounded"
+                />
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  className="w-full p-2 mt-4 border rounded"
+                />
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  className="w-full p-2 mt-4 border rounded"
+                />
+                <input
+                  type="phone"
+                  placeholder="Your phone number"
+                  className="w-full p-2 mt-4 border rounded"
+                />
+                <button
+                  onClick={submitSignEvent}
+                  className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300"
+                >
+                  Submit
+                </button>
+              </Modal>
             </>
           )}
         </main>
