@@ -49,8 +49,8 @@ const CRPWebsite = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-blue-50 to-purple-50 min-h-screen">
-      <div className="max-w-7xl px-4 pb-4 mx-2 md:mx-20">
+    <div className="min-h-screen flex justify-center items-center px-4 bg-gray-50">
+      <div className="w-full max-w-7xl pb-4">
         <main className="py-8">
           {/* Featured Events Section */}
           {activeEventIndex != null && (
@@ -60,55 +60,55 @@ const CRPWebsite = () => {
                   Featured Events
                 </h2>
                 <div className="relative">
-                    <div className="flex justify-center">
-                      <img
-                        src={featuredEvent.image}
-                        alt="Featured event"
-                        className="w-96 md:w-10/12 h-64 md:h-96 object-cover rounded-lg"
-                      />
-                    </div>
-                    {/* Navigation Buttons */}
-                    <div className="absolute inset-0 flex items-center justify-between px-8">
-                      <button
-                        onClick={prevEvent}
-                        className="text-white p-2 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75"
-                      >
-                        <ChevronLeft size={24} />
-                      </button>
-                      <button
-                        onClick={nextEvent}
-                        className="text-white p-2 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75"
-                      >
-                        <ChevronRight size={24} />
-                      </button>
-                    </div>
-                </div>
-                <div className="p-6 flex flex-col items-center justify-center">
-                  <Link to={`/events/${featuredEvent.id}`} key={event.id}>
-                  <h3 className="text-2xl font-bold mb-2 text-gray-800">
-                    {featuredEvent.name}
-                  </h3>
-                  <p className="mb-4 text-gray-600 text-center">
-                    {featuredEvent.description}
-                  </p>
-                  <div className="flex gap-4 items-center justify-center">
-                    <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">
-                      Sign up for event
-                    </button>
-
-                    <AddToCalendarButton
-                      label="Remind Me"
-                      options={["Apple", "Google", "Yahoo", "iCal"]}
-                      timeZone="America/Los_Angeles"
-                      name={featuredEvent.name}
-                      description={featuredEvent.description}
-                      location={featuredEvent.location}
-                      startDate={formatDate(new Date(featuredEvent.start_date))}
-                      hideCheckmark
-                      forceOverlay
-                      hideBackground
+                  <div className="flex justify-center">
+                    <img
+                      src={featuredEvent.image}
+                      alt="Featured event"
+                      className="w-full md:w-10/12 h-64 md:h-96 object-cover rounded-lg mx-auto"
                     />
                   </div>
+                  {/* Navigation Buttons */}
+                  <div className="absolute inset-0 flex items-center justify-between px-4 md:px-8">
+                    <button
+                      onClick={prevEvent}
+                      className="text-white p-2 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75"
+                    >
+                      <ChevronLeft size={24} />
+                    </button>
+                    <button
+                      onClick={nextEvent}
+                      className="text-white p-2 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75"
+                    >
+                      <ChevronRight size={24} />
+                    </button>
+                  </div>
+                </div>
+                <div className="p-6 flex flex-col items-center justify-center">
+                  <Link to={`/events/${featuredEvent.id}`} key={featuredEvent.id}>
+                    <h3 className="text-2xl font-bold mb-2 text-gray-800">
+                      {featuredEvent.name}
+                    </h3>
+                    <p className="mb-4 text-gray-600 text-center">
+                      {featuredEvent.description}
+                    </p>
+                    <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
+                      <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">
+                        Sign up for event
+                      </button>
+
+                      <AddToCalendarButton
+                        label="Remind Me"
+                        options={["Apple", "Google", "Yahoo", "iCal"]}
+                        timeZone="America/Los_Angeles"
+                        name={featuredEvent.name}
+                        description={featuredEvent.description}
+                        location={featuredEvent.location}
+                        startDate={formatDate(new Date(featuredEvent.start_date))}
+                        hideCheckmark
+                        forceOverlay
+                        hideBackground
+                      />
+                    </div>
                   </Link>
                 </div>
               </div>
@@ -133,7 +133,7 @@ const CRPWebsite = () => {
                 <h2 className="text-3xl font-light mb-6 text-center text-gray-800">
                   Events and Posts
                 </h2>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {events.map((event, index) => (
                     <Link to={`/events/${event.id}`} key={event.id}>
                       <div
@@ -151,7 +151,7 @@ const CRPWebsite = () => {
                           <p className="mb-4 text-gray-600 text-sm">
                             {event.description}
                           </p>
-                          <div className="flex gap-2 items-center justify-center">
+                          <div className="flex flex-col sm:flex-row gap-2 items-center justify-center">
                             <button className="bg-blue-600 text-white px-4 py-3 rounded text-sm hover:bg-blue-700 transition duration-300">
                               Sign up
                             </button>
