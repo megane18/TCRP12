@@ -106,7 +106,7 @@ const AdminDashboard = () => {
     <div className="bg-gradient-to-b from-blue-50 to-purple-50 min-h-screen p-20 justify-center">
       <div className="max-w-7xl m-auto">
         {/* Dashboard Header */}
-        <h1 className="text-3xl font-bold text-black mb-6 mt-12">
+        <h1 className="text-3xl font-light text-black mb-6 mt-12">
           Admin Dashboard
         </h1>
 
@@ -244,7 +244,7 @@ const AdminDashboard = () => {
         {events && (
           <>
             <section className="mb-12">
-              <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+              <h2 className="text-3xl font-light mb-6 text-center text-gray-800">
                 Events and Posts
               </h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -293,7 +293,7 @@ const AdminDashboard = () => {
 
         {/* Pending Requests Section */}
         <div className=" mx-auto my-8 ">
-          <h1 className="text-2xl font-bold text-center mb-6 text-black">
+          <h1 className="text-2xl font-light text-center mb-6 text-black">
             Pending Requests
           </h1>
           <div className="overflow-x-auto rounded-lg">
