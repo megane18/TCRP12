@@ -77,7 +77,7 @@ const CRPWebsite = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center px-4 bg-gray-50">
+    <div className="min-h-screen flex justify-center items-center px-4 bg-gradient-to-b from-blue-50 to-purple-50">
       <div className="w-full max-w-7xl pb-4">
         <main className="py-8">
           {/* Featured Events Section */}
@@ -112,7 +112,10 @@ const CRPWebsite = () => {
                   </div>
                 </div>
                 <div className="p-6 flex flex-col items-center justify-center">
-                  <Link to={`/events/${featuredEvent.id}`} key={featuredEvent.id}>
+                  <Link
+                    to={`/events/${featuredEvent.id}`}
+                    key={featuredEvent.id}
+                  >
                     <h3 className="text-2xl font-bold mb-2 text-gray-800">
                       {featuredEvent.name}
                     </h3>
@@ -148,7 +151,9 @@ const CRPWebsite = () => {
 
           {/* Other Events and Posts */}
           {loading && (
-            <p className="text-center text-gray-500">Loading event details...</p>
+            <p className="text-center text-gray-500">
+              Loading event details...
+            </p>
           )}
           {error && <p className="text-center text-red-500">{error}</p>}
 
@@ -208,7 +213,9 @@ const CRPWebsite = () => {
                 </div>
               </section>
               <Modal show={showModal} handleClose={handleCloseModal}>
-                <h2 className="text-xl font-bold text-black">Sign Up for Event</h2>
+                <h2 className="text-xl font-bold text-black">
+                  Sign Up for Event
+                </h2>
                 <p className="text-black">
                   Please enter your details to sign up for the event.
                 </p>
