@@ -60,30 +60,31 @@ const CRPWebsite = () => {
                   Featured Events
                 </h2>
                 <div className="relative">
-                  <div className="flex justify-center">
-                    <img
-                      src={featuredEvent.image}
-                      alt="Featured event"
-                      className="w-96 md:w-10/12 h-64 md:h-96 object-cover rounded-lg"
-                    />
-                  </div>
-                  {/* Navigation Buttons */}
-                  <div className="absolute inset-0 flex items-center justify-between px-8">
-                    <button
-                      onClick={prevEvent}
-                      className="text-white p-2 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75"
-                    >
-                      <ChevronLeft size={24} />
-                    </button>
-                    <button
-                      onClick={nextEvent}
-                      className="text-white p-2 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75"
-                    >
-                      <ChevronRight size={24} />
-                    </button>
-                  </div>
+                    <div className="flex justify-center">
+                      <img
+                        src={featuredEvent.image}
+                        alt="Featured event"
+                        className="w-96 md:w-10/12 h-64 md:h-96 object-cover rounded-lg"
+                      />
+                    </div>
+                    {/* Navigation Buttons */}
+                    <div className="absolute inset-0 flex items-center justify-between px-8">
+                      <button
+                        onClick={prevEvent}
+                        className="text-white p-2 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75"
+                      >
+                        <ChevronLeft size={24} />
+                      </button>
+                      <button
+                        onClick={nextEvent}
+                        className="text-white p-2 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75"
+                      >
+                        <ChevronRight size={24} />
+                      </button>
+                    </div>
                 </div>
                 <div className="p-6 flex flex-col items-center justify-center">
+                  <Link to={`/events/${featuredEvent.id}`} key={event.id}>
                   <h3 className="text-2xl font-bold mb-2 text-gray-800">
                     {featuredEvent.name}
                   </h3>
@@ -108,6 +109,7 @@ const CRPWebsite = () => {
                       hideBackground
                     />
                   </div>
+                  </Link>
                 </div>
               </div>
             </section>
