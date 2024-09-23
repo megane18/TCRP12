@@ -8,6 +8,8 @@ import AdminDashboard from './components/AdminDashboard';
 import RequestForm from "./components/RequestForm";
 import SendMassCommunication from "./components/SendMassCommunication";
 import Footer from './components/Footer';
+import EventDetails from './components/EventDetails';
+
 import Home from './components/Home'
 import './App.css';
 import React, { useRef } from 'react';
@@ -30,6 +32,7 @@ const App = () => {
               element={<SendMassCommunication />}
             />
             <Route path="/request-form" element={<RequestForm />} />
+            <Route path="/events/:id" element={<EventDetails />} />
             <Route path="footer" element={<Footer />} />
           </Routes>
         </div>
