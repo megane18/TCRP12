@@ -44,44 +44,47 @@ const CRPHomePage = () => {
             </div>
           </div>
 
-          <section className="grid md:grid-cols-3 gap-10 mb-16  w-full">
-            <div className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition duration-300">
-              <div className="flex justify-center">
-                <Heart className="w-12 h-12 text-red-500 mb-4" />
+          <section className="mb-16">
+            <div className="grid md:grid-cols-3 gap-10 w-11/12 mx-auto">
+              <div className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition duration-300 text-center">
+                <div className="flex justify-center">
+                  <Heart className="w-12 h-12 text-red-500 mb-4" />
+                </div>
+                <h2 className="text-2xl font-bold mb-2 text-gray-800">
+                  Our Mission
+                </h2>
+                <p className="text-gray-600">
+                  To restore and revitalize communities through collaborative
+                  efforts and sustainable initiatives.
+                </p>
               </div>
-              <h2 className="text-2xl font-bold mb-2 text-gray-800">
-                Our Mission
-              </h2>
-              <p className="text-gray-600">
-                To restore and revitalize communities through collaborative
-                efforts and sustainable initiatives.
-              </p>
-            </div>
-            <div className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition duration-300">
-              <div className="flex justify-center">
-                <Users className="w-12 h-12 text-blue-500 mb-4" />
+              <div className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition duration-300 text-center">
+                <div className="flex justify-center">
+                  <Users className="w-12 h-12 text-blue-500 mb-4" />
+                </div>
+                <h2 className="text-2xl font-bold mb-2 text-gray-800">
+                  Get Involved
+                </h2>
+                <p className="text-gray-600">
+                  Join our community of volunteers to learn how you can make an
+                  impact in your neighborhood.
+                </p>
               </div>
-              <h2 className="text-2xl font-bold mb-2 text-gray-800">
-                Get Involved
-              </h2>
-              <p className="text-gray-600">
-                Join our community of volunteers to learn how you can make an
-                impact in your neighborhood.
-              </p>
-            </div>
-            <div className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition duration-300">
-              <div className="flex justify-center">
-                <Home className="w-12 h-12 text-green-500 mb-4" />
+              <div className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition duration-300 text-center">
+                <div className="flex justify-center">
+                  <Home className="w-12 h-12 text-green-500 mb-4" />
+                </div>
+                <h2 className="text-2xl font-bold mb-2 text-gray-800">
+                  Our Projects
+                </h2>
+                <p className="text-gray-600">
+                  From housing renovations to community gardens, explore our
+                  ongoing restoration projects.
+                </p>
               </div>
-              <h2 className="text-2xl font-bold mb-2 text-gray-800">
-                Our Projects
-              </h2>
-              <p className="text-gray-600">
-                From housing renovations to community gardens, explore our
-                ongoing restoration projects.
-              </p>
             </div>
           </section>
+
 
           <section className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-6 text-gray-800">
