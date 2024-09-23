@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 #root {
   width: 100%;
   margin: 0 auto;
@@ -49,33 +48,6 @@
 
 .MenuButton svg {
   color: black;
-}
-
-.chat-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 50vh; /* Reduced the height */
-  width: 80%; /* Set width to 80% of the page */
-  margin: 20px auto; /* Centered horizontally */
-  padding: 1rem;
-  background-color: #f1f1f1;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  position: relative;
-  z-index: 1000; /* Ensure the chat is on top of header and footer */
-}
-
-.chat-box {
-  width: 100%;
-  height: 35vh; /* Reduce the height of the message box */
-  overflow-y: auto;
-  padding: 1rem;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin-bottom: 1rem;
 }
 
 .input-box {
