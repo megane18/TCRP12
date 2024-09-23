@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Dashboard from "./components/Dashboard";
 import AdminDashboard from "./components/AdminDashboard";
 import RequestForm from "./components/RequestForm";
+import SendMassCommunication from "./components/SendMassCommunication";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import "./App.css";
@@ -24,6 +25,7 @@ const App = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/request-form" element={<RequestForm />} />
+            <Route path="/events/:id" element={<EventDetails />} />
             <Route path="footer" element={<Footer />} />
           </Routes>
         </div>
