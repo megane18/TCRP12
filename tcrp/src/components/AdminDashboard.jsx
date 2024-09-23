@@ -260,7 +260,6 @@ const AdminDashboard = () => {
                     />
                     <div className="p-6">
                       <div className="min-h-32">
-
                         <h3 className="text-xl font-bold mb-2 text-gray-800">
                           {event.name}
                         </h3>
@@ -311,43 +310,90 @@ const AdminDashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {pendingRequests.map((issue) => (
-                  <tr
-                    key={issue.id}
-                    className="hover:bg-gray-50 text-black text-start"
-                  >
-                    <td className="py-3 px-4 border-b border-gray-200">
-                      {issue.completed ? "Resolved" : "Pending"}
-                    </td>
-                    <td className="py-3 px-4 border-b border-gray-200">
-                      {issue.requestType}
-                    </td>
-                    <td className="py-3 px-4 border-b border-gray-200">
-                      {issue.name}
-                    </td>
-                    <td className="py-3 px-4 border-b border-gray-200">
-                      {issue.email}
-                    </td>
-                    <td className="py-3 px-4 border-b border-gray-200">
-                      {issue.message}
-                    </td>
-                    <td className="py-3 px-4 border-b border-gray-200">
-                      <div className="flex space-x-2 align-middle">
-                        <button className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 w-36">
-                          Assign to Staff
-                        </button>
-                        {!issue.completed && (
-                          <button
-                            onClick={() => handleCheck(event.id)} // Replace with your desired function
-                            className="bg-white border-1 border-black flex items-center justify-center p-2 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-300"
-                          >
-                            <CircleCheck className="text-red-500" size={24} />
+                {pendingRequests
+                  .filter((issue) => !issue.completed)
+                  .map((issue) => (
+                    <tr
+                      key={issue.id}
+                      className="hover:bg-gray-50 text-black text-start"
+                    >
+                      <td className="py-3 px-4 border-b border-gray-200">
+                        {issue.completed ? "Resolved" : "Pending"}
+                      </td>
+                      <td className="py-3 px-4 border-b border-gray-200">
+                        {issue.requestType}
+                      </td>
+                      <td className="py-3 px-4 border-b border-gray-200">
+                        {issue.name}
+                      </td>
+                      <td className="py-3 px-4 border-b border-gray-200">
+                        {issue.email}
+                      </td>
+                      <td className="py-3 px-4 border-b border-gray-200">
+                        {issue.message}
+                      </td>
+                      <td className="py-3 px-4 border-b border-gray-200">
+                        <div className="flex space-x-2 align-middle">
+                          <button className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 w-36">
+                            Assign to Staff
                           </button>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+                          {!issue.completed && (
+                            <button
+                              onClick={() => handleCheck(event.id)} // Replace with your desired function
+                              className="bg-white border-1 border-black flex items-center justify-center p-2 rounded-md hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300"
+                            >
+                              <CircleCheck
+                                className="text-green-500"
+                                size={24}
+                              />
+                            </button>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                {pendingRequests
+                  .filter((issue) => issue.completed)
+                  .map((issue) => (
+                    <tr
+                      key={issue.id}
+                      className="hover:bg-gray-50 text-black text-start"
+                    >
+                      <td className="py-3 px-4 border-b border-gray-200">
+                        {issue.completed ? "Resolved" : "Pending"}
+                      </td>
+                      <td className="py-3 px-4 border-b border-gray-200">
+                        {issue.requestType}
+                      </td>
+                      <td className="py-3 px-4 border-b border-gray-200">
+                        {issue.name}
+                      </td>
+                      <td className="py-3 px-4 border-b border-gray-200">
+                        {issue.email}
+                      </td>
+                      <td className="py-3 px-4 border-b border-gray-200">
+                        {issue.message}
+                      </td>
+                      <td className="py-3 px-4 border-b border-gray-200">
+                        <div className="flex space-x-2 align-middle">
+                          <button className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 w-36">
+                            Assign to Staff
+                          </button>
+                          {!issue.completed && (
+                            <button
+                              onClick={() => handleCheck(event.id)} // Replace with your desired function
+                              className="bg-white border-1 border-black flex items-center justify-center p-2 rounded-md hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300"
+                            >
+                              <CircleCheck
+                                className="text-green-500"
+                                size={24}
+                              />
+                            </button>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
