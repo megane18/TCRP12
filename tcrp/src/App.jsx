@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import Home from "./components/Home";
 import "./App.css";
 import React, { useRef } from "react";
+import EventDetails from "./components/EventDetails";
 
 const App = () => {
   const footerRef = useRef(null);
