@@ -5,7 +5,14 @@ import "reactjs-popup/dist/index.css";
 import { Link } from "react-router-dom";
 import pendingRequests from "../assets/pendingrequest";
 import dummyEvents from "../assets/events";
-import { XIcon } from "lucide-react";
+import {
+  CircleCheck,
+  DeleteIcon,
+  Edit2Icon,
+  Trash2Icon,
+  UserPenIcon,
+  XIcon,
+} from "lucide-react";
 
 const contentStyle = {
   background: "rgba(255,255,255)",
@@ -252,20 +259,17 @@ const AdminDashboard = () => {
                       <p className="mb-4 text-gray-600 text-sm">
                         {event.description}
                       </p>
-                      <div className="gap-4 items-center">
-                        <button
+                      <div className="gap-4 items-center flex justify-end">
+                        <Trash2Icon
+                          size={24}
+                          color="red"
                           onClick={() => handleRemoveEvent(event.id)}
-                          className="bg-red-500 text-white px-4 py-2 rounded-lg mt-2 mr-2 w-20 flex justify-center"
-                        >
-                          Remove
-                        </button>
-
-                        <button
+                        />
+                        <UserPenIcon
+                          size={24}
+                          color="blue"
                           onClick={() => handleRemoveEvent(event.id)}
-                          className="bg-red-500 text-white px-6  rounded-lg mt-2 w-20 flex"
-                        >
-                          Edit
-                        </button>
+                        />
                       </div>
                     </div>
                   </div>
@@ -316,13 +320,16 @@ const AdminDashboard = () => {
                       {issue.message}
                     </td>
                     <td className="py-3 px-4 border-b border-gray-200">
-                      <div className="flex space-x-2">
-                        <button className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
+                      <div className="flex space-x-2 align-middle">
+                        <button className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 w-36">
                           Assign to Staff
                         </button>
                         {!issue.completed && (
-                          <button className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
-                            Resolve
+                          <button className="bg-transparent">
+                            <CircleCheck
+                              className="text-red-500 flex self-center"
+                              size={24}
+                            />
                           </button>
                         )}
                       </div>
