@@ -37,36 +37,38 @@ const App = () => {
   }, [isChatOpen]);
 
   return (
-    <Router>
-      <div className="flex flex-col min-h-screen w-full">
-        <Header footerRef={footerRef} />
-        <div className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/signup" element={<SignUpForm />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/request-form" element={<RequestForm />} />
-            <Route path="/events/:id" element={<EventDetails />} />
-            {/* <Route path="/chat" element={<ChatBot />} /> */}
-          </Routes>
+    <div className="min-h-screen w-screen">
+      <Router>
+        <div className="flex flex-col ">
+          <Header footerRef={footerRef} />
+          <div className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/signup" element={<SignUpForm />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/request-form" element={<RequestForm />} />
+              <Route path="/events/:id" element={<EventDetails />} />
+              {/* <Route path="/chat" element={<ChatBot />} /> */}
+            </Routes>
+          </div>
+          <Footer footerRef={footerRef} />
+
+          {/* Floating Chat Button */}
+          <button
+            onClick={toggleChat}
+            className="fixed bottom-6 right-6 w-16 h-16 bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-blue-700 transition-colors duration-300 z-55"
+            aria-label="Toggle Chat"
+          >
+            <FontAwesomeIcon icon={faComments} size="lg" />
+          </button>
+
+          {/* ChatBot Overlay */}
+          {isChatOpen && <ChatBot onClose={toggleChat} />}
         </div>
-        <Footer footerRef={footerRef} />
-
-        {/* Floating Chat Button */}
-        <button
-          onClick={toggleChat}
-          className="fixed bottom-6 right-6 w-16 h-16 bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-blue-700 transition-colors duration-300 z-50"
-          aria-label="Toggle Chat"
-        >
-          <FontAwesomeIcon icon={faComments} size="lg" />
-        </button>
-
-        {/* ChatBot Overlay */}
-        {isChatOpen && <ChatBot onClose={toggleChat} />}
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 };
 
