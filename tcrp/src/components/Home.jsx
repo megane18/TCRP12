@@ -96,7 +96,7 @@ const CRPHomePage = () => {
                 <p className="text-gray-600">Projects Completed</p>
               </div>
               <div>
-                <p className="text-4xl font-bold text-blue-600 mb-2">1000+</p>
+                <p className="text-4xl font-bold text-blue-600 mb-2">700+</p>
                 <p className="text-gray-600">Volunteers Engaged</p>
               </div>
               <div>
@@ -104,7 +104,7 @@ const CRPHomePage = () => {
                 <p className="text-gray-600">Communities Served</p>
               </div>
               <div>
-                <p className="text-4xl font-bold text-blue-600 mb-2">$500K+</p>
+                <p className="text-4xl font-bold text-blue-600 mb-2">$250K+</p>
                 <p className="text-gray-600">Funds Raised</p>
               </div>
             </div>

@@ -44,7 +44,7 @@ const Footer = ({ footerRef }) => {
             <button className="bg-gray-100 py-2 p-4 rounded-md hover:bg-gray-600 text-black w-40">Donate</button>
           </div>
           <Link to="/request-form">
-            <button className="bg-gray-100 py-2 p-4 rounded-md hover:bg-gray-600 text-black w-40">Report an issue</button>
+            <button className="bg-gray-100 py-2 p-4 rounded-md hover:bg-gray-600 text-black w-40">Submit Request</button>
           </Link>
         </div> 
       </div>
