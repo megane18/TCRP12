@@ -51,12 +51,12 @@ const CRPWebsite = () => {
 
   return (
     <div className="bg-gradient-to-b from-blue-50 to-purple-50 min-h-screen">
-      <div className="max-w-7xl px-4 pb-4 mx-2 md:mx-20">
+      <div className="max-w-7xl px-4 pb-4 m-auto">
         <main className="py-8">
           {/* <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center text-gray-800 mt-12">
             Community Restoration Project
           </h1> */}
-  
+
           {/* Featured Events Section */}
           {activeEventIndex != null && (
             <section className="mb-12 mt-16">
@@ -100,7 +100,7 @@ const CRPWebsite = () => {
                     <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">
                       Sign up for event
                     </button>
-  
+
                     <AddToCalendarButton
                       label="Remind Me"
                       options={["Apple", "Google", "Yahoo", "iCal"]}
@@ -118,7 +118,6 @@ const CRPWebsite = () => {
               </div>
             </section>
           )}
-
 
           {/* Other Events and Posts */}
           {loading && (
