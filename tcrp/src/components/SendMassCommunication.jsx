@@ -3,6 +3,7 @@ import "react-dropdown/style.css";
 import { XIcon } from "lucide-react";
 import Editor from "./Editor";
 import "react-datepicker/dist/react-datepicker.css";
+import "react-quill/dist/quill.snow.css";
 
 const SendMassCommunication = ({ close }) => {
   const [convertedText, setConvertedText] = useState("");
@@ -92,14 +93,20 @@ const SendMassCommunication = ({ close }) => {
           <p className="text-start text-gray-500">Message</p>
 
           <div className="border border-gray-300 rounded-lg overflow-hidden w-full max-w-2xl">
-            <Editor ref={quillRef} className="h-64 p-4" readOnly={readOnly} />
+            <Editor ref={quillRef} readOnly={readOnly} />
+            {/* <Editor ref={quillRef} className="h-64 p-4" readOnly={readOnly} /> */}
           </div>
           <style jsx>{`
             .ql-editor {
               color: black;
-              max-height: 100px;
               padding: 1rem;
               background: white;
+            }
+            .ql-toolbar {
+              background: #f7f7f7;
+              border: 1px solid #ccc;
+              border-radius: 4px 4px 0 0;
+              padding: 8px;
             }
           `}</style>
         </div>
