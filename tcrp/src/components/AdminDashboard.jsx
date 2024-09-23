@@ -268,16 +268,16 @@ const AdminDashboard = () => {
                       <div className="gap-4 items-center flex justify-end">
                         <button
                           onClick={() => handleRemoveEvent(event.id)}
-                          className="bg-white border-1 border-black flex items-center justify-center p-2 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-300"
+                          className="bg-white flex items-center justify-center p-2 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-300"
                         >
-                          <Trash2Icon size={24} color="red" />
+                          <Trash2Icon size={32} color="red" />
                         </button>
 
                         <button
                           onClick={() => handleEditEvent(event.id)} // Update function name as needed
-                          className="bg-white border-1 border-black  flex items-center justify-center p-2 rounded-md hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+                          className="bg-white  flex items-center justify-center p-2 rounded-md hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
                         >
-                          <UserPenIcon size={24} color="blue" />
+                          <UserPenIcon size={30} color="blue" />
                         </button>
                       </div>
                     </div>
