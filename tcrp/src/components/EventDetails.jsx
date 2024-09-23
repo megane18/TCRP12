@@ -1,8 +1,7 @@
-// EventDetails.js
+// src/components/EventDetails.js
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { AddToCalendarButton } from "add-to-calendar-button-react";
-import stock from '../assets/stock_photo.jpg'; // Your stock image
 import dummyEvents from "../assets/events"; // Import hardcoded events
 
 const EventDetails = () => {
@@ -27,7 +26,7 @@ const EventDetails = () => {
         <div className="w-full min-h-screen bg-gray-50 flex items-center justify-center p-4">
             <div className="w-full max-w-7xl bg-white shadow-xl rounded-lg p-6">
                 <h2 className="text-3xl font-light text-black mb-3">{event.name} Details</h2>
-                <img src={stock} alt="Event" className="w-full h-80 object-cover rounded-lg" />
+                <img src={event.image} alt={event.name} className="w-full h-80 object-cover rounded-lg" />
                 
                 <div className="mt-6">
                     <div className='flex mb-4 justify-between'>
@@ -60,6 +59,7 @@ const EventDetails = () => {
                     </div>
                     <div className="bg-gray-100 p-4 rounded-lg text-left">
                         <p className="mb-2 text-black"><em>Description:</em> {event.description}</p>
+                        <p className="mb-2 text-black"><strong>Location:</strong> {event.location}</p>
                     </div>
                 </div>
             </div>
