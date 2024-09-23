@@ -143,6 +143,7 @@ const AdminDashboard = () => {
               contentStyle,
               overlayStyle,
             }}
+            closeOnDocumentClick={false}
             position="center center"
             modal
           >
@@ -162,16 +163,16 @@ const AdminDashboard = () => {
             }}
             position="center center"
             modal
+            closeOnDocumentClick={false}
           >
             {(close) => (
               <div className="justify-center  rounded-lg  bg-gradient-to-b from-blue-50 to-purple-50">
-                <XIcon
-                  size={24}
-                  color="black"
-                  onClick={close}
-                  className="absolute top-2 right-2"
-                />
-
+                <button
+                  onClick={() => handleRemoveEvent(event.id)}
+                  className="absolute top-2 right-2 bg-white border-1 border-black flex items-center justify-center p-0.5 rounded-lg hover:bg-red-100  "
+                >
+                  <XIcon size={24} color="red" onClick={close} />
+                </button>
                 <div className="justify-center flex  w-full h-full">
                   <div
                     className=" text-black p-5  rounded-lg w-full

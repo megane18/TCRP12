@@ -1,20 +1,23 @@
-import React, { useState } from "react";
-import ReactQuill from "react-quill";
+import React, { useState, useRef } from "react";
 import "react-quill/dist/quill.snow.css";
 import "react-dropdown/style.css";
 import { XIcon } from "lucide-react";
-import DatePicker from "react-datepicker";
+import Editor from "./Editor";
 import "react-datepicker/dist/react-datepicker.css";
 
 const SendMassCommunication = ({ close }) => {
-  const [convertedText, setConvertedText] = useState(
-    "Compose your message here"
-  );
+  const [convertedText, setConvertedText] = useState("");
   const [title, setTitle] = useState("");
   const [recipientGroup, setRecipientGroup] = useState("allMembers");
   const [selectedValue, setSelectedValue] = useState("All Events");
   const [channel, setChannel] = useState([]);
   const [file, setFile] = useState(null);
+
+  const [range, setRange] = useState();
+  const [lastChange, setLastChange] = useState();
+  const [readOnly, setReadOnly] = useState(false);
+  const quillRef = useRef();
+
   const [scheduleDate, setScheduleDate] = useState(
     new Date().toISOString().slice(0, 16)
   );
@@ -66,12 +69,12 @@ const SendMassCommunication = ({ close }) => {
   return (
     <div className="p-4 bg-gradient-to-b from-blue-50 to-purple-50 rounded-lg">
       <div className="justify-center  rounded-lg ">
-        <XIcon
-          size={24}
-          color="black"
-          onClick={close}
-          className="absolute top-2 right-2"
-        />
+        <button
+          onClick={() => handleRemoveEvent(event.id)}
+          className="absolute top-2 right-2 bg-white border-1 border-black flex items-center justify-center p-0.5 rounded-lg hover:bg-red-100  "
+        >
+          <XIcon size={24} color="red" onClick={close} />
+        </button>
       </div>
       <form onSubmit={handleSubmit} className="flex flex-col w-full gap-5">
         <div className="text-black flex flex-col text-start">
@@ -90,12 +93,18 @@ const SendMassCommunication = ({ close }) => {
         </div>
         <div>
           <p className="text-start text-gray-500">Message</p>
-          <ReactQuill
-            theme="snow"
-            className="border border-gray-300 bg-gray-100 rounded-md text-black"
-            value={convertedText}
-            onChange={setConvertedText}
-          />
+
+          <div className="border border-gray-300 rounded-lg overflow-hidden w-full max-w-2xl">
+            <Editor ref={quillRef} className="h-64 p-4" readOnly={readOnly} />
+          </div>
+          <style jsx>{`
+            .ql-editor {
+              color: black;
+              max-height: 100px;
+              padding: 1rem;
+              background: white;
+            }
+          `}</style>
         </div>
 
         <div className="flex align-middle">
