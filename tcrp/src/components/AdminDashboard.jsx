@@ -32,7 +32,7 @@ const AdminDashboard = () => {
     name: "",
     type: "",
     description: "",
-    start_date: "",
+    start_date: new Date().toISOString().slice(0, 16),
   });
 
   useEffect(() => {
