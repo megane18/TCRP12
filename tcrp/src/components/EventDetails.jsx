@@ -1,49 +1,23 @@
 // EventDetails.js
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import stock from '../assets/stock_photo.jpg'; // Assuming the stock image is in your assets folder
-import { useParams } from 'react-router-dom'; // Import useParams
-
+import React from 'react';
+import { useParams } from 'react-router-dom';
 import { AddToCalendarButton } from "add-to-calendar-button-react";
-// import dummyEvents from "../assets/events";
+import stock from '../assets/stock_photo.jpg'; // Your stock image
+import dummyEvents from "../assets/events"; // Import hardcoded events
 
 const EventDetails = () => {
     const { id } = useParams(); // Extract the event ID from the URL
-    const [event, setEvent] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
+    // Find the event with the matching id
+    const event = dummyEvents.find((evt) => String(evt.id) === id);
+
+    // Function to format the date
     const formatDate = (date) => {
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
         const day = String(date.getDate()).padStart(2, "0");
         return `${year}-${month}-${day}`;
-      };
-
-    useEffect(() => {
-        fetchEventDetails(id);
-    }, [id]);
-
-    // Fetch event details by ID from the API
-    const fetchEventDetails = async (eventId) => {
-        try {
-            const response = await axios.get(`http://127.0.0.1:8000/events/${eventId}`);
-            setEvent(response.data);
-            setLoading(false);
-        } catch (error) {
-            console.error("Error fetching event details:", error);
-            setError("Failed to fetch event details");
-            setLoading(false);
-        }
     };
-
-    if (loading) {
-        return <p className="text-center text-gray-500">Loading event details...</p>;
-    }
-
-    if (error) {
-        return <p className="text-center text-red-500">{error}</p>;
-    }
 
     if (!event) {
         return <p className="text-center text-gray-500">No event found</p>;
@@ -73,17 +47,15 @@ const EventDetails = () => {
                           <AddToCalendarButton
                             label="Remind Me"
                             size="6|4"
-                            name="{event.name}"
+                            name={event.name}
                             className="m-0"
-                            // location={event.location}
                             description={event.description}
                             startDate={formatDate(new Date(event.start_date))}
                             options={["Apple", "Google", "Yahoo", "iCal"]}
                             timeZone="America/Los_Angeles"
                             forceOverlay
                             hideBackground
-                          ></AddToCalendarButton>
-
+                          />
                         </div>
                     </div>
                     <div className="bg-gray-100 p-4 rounded-lg text-left">

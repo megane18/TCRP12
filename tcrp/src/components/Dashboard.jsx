@@ -1,8 +1,9 @@
+// CRPWebsite.js
 import React, { useEffect, useState } from "react";
-import { Menu, ChevronLeft, ChevronRight } from "lucide-react";
-import axios from "axios";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { AddToCalendarButton } from "add-to-calendar-button-react";
 import dummyEvents from "../assets/events";
+import { Link } from 'react-router-dom'; // Import Link
 
 const CRPWebsite = () => {
   const [events, setEvents] = useState([]);
@@ -19,9 +20,7 @@ const CRPWebsite = () => {
 
   const fetchEvents = async () => {
     try {
-      // Fetch events from the API
-      // const response = await axios.get(`http://127.0.0.1:8000/events`);
-      // setEvents(response.data);
+      // Since we're using dummyEvents, no need to fetch from API
       setEvents(dummyEvents);
       setActiveEventIndex(0);
       setLoading(false);
@@ -38,7 +37,7 @@ const CRPWebsite = () => {
 
   const prevEvent = () => {
     setActiveEventIndex(
-      (prevIndex) => (prevIndex - 1 + events.length) % fEvents.length
+      (prevIndex) => (prevIndex - 1 + fEvents.length) % fEvents.length
     );
   };
 
@@ -51,12 +50,8 @@ const CRPWebsite = () => {
 
   return (
     <div className="bg-gradient-to-b from-blue-50 to-purple-50 min-h-screen">
-      <div className="max-w-7xl px-4 pb-4 m-auto">
+      <div className="max-w-7xl px-4 pb-4 mx-2 md:mx-20">
         <main className="py-8">
-          {/* <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center text-gray-800 mt-12">
-            Community Restoration Project
-          </h1> */}
-
           {/* Featured Events Section */}
           {activeEventIndex != null && (
             <section className="mb-12 mt-16">
@@ -65,7 +60,6 @@ const CRPWebsite = () => {
                   Featured Events
                 </h2>
                 <div className="relative">
-                  {/* Center the image and add white space on the sides */}
                   <div className="flex justify-center">
                     <img
                       src={featuredEvent.image}
@@ -127,11 +121,11 @@ const CRPWebsite = () => {
           )}
           {error && <p className="text-center text-red-500">{error}</p>}
 
-          {!events && (
+          {!events.length && (
             <p className="text-center text-gray-500">No event found</p>
           )}
 
-          {!loading && !error && events && (
+          {!loading && !error && events.length > 0 && (
             <>
               <section className="mb-12">
                 <h2 className="text-3xl font-light mb-6 text-center text-gray-800">
@@ -139,45 +133,42 @@ const CRPWebsite = () => {
                 </h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {events.map((event, index) => (
-                    <div
-                      key={index}
-                      className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300"
-                    >
-                      <img
-                        src={event.image}
-                        alt={event.title}
-                        className="w-full h-48 object-cover"
-                      />
-                      <div className="p-6">
-                        <h3 className="text-xl font-bold mb-2 text-gray-800 min-h-14">
-                          {event.name}
-                        </h3>
-                        <p className="mb-4 text-gray-600 text-sm">
-                          {event.description}
-                        </p>
-                        <div className="flex gap-2 items-center justify-center">
-                          <button className="bg-blue-600 text-white px-4 py-3 rounded text-sm hover:bg-blue-700 transition duration-300">
-                            Sign up
-                          </button>
-                          <AddToCalendarButton
-                            label="Remind Me"
-                            size="6|4"
-                            name={event.name}
-                            className="m-0"
-                            // location={event.location}
-                            description={event.description}
-                            startDate={formatDate(new Date(event.start_date))}
-                            options={["Apple", "Google", "Yahoo", "iCal"]}
-                            timeZone="America/Los_Angeles"
-                            forceOverlay
-                            hideBackground
-                          ></AddToCalendarButton>
-                          {/* <button className="bg-gray-200 text-gray-800 px-3 py-1 rounded text-sm hover:bg-gray-300 transition duration-300">
-                            Remind Me
-                          </button> */}
+                    <Link to={`/events/${event.id}`} key={event.id}>
+                      <div
+                        className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 cursor-pointer"
+                      >
+                        <img
+                          src={event.image}
+                          alt={event.name}
+                          className="w-full h-48 object-cover"
+                        />
+                        <div className="p-6">
+                          <h3 className="text-xl font-bold mb-2 text-gray-800 min-h-14">
+                            {event.name}
+                          </h3>
+                          <p className="mb-4 text-gray-600 text-sm">
+                            {event.description}
+                          </p>
+                          <div className="flex gap-2 items-center justify-center">
+                            <button className="bg-blue-600 text-white px-4 py-3 rounded text-sm hover:bg-blue-700 transition duration-300">
+                              Sign up
+                            </button>
+                            <AddToCalendarButton
+                              label="Remind Me"
+                              size="6|4"
+                              name={event.name}
+                              className="m-0"
+                              description={event.description}
+                              startDate={formatDate(new Date(event.start_date))}
+                              options={["Apple", "Google", "Yahoo", "iCal"]}
+                              timeZone="America/Los_Angeles"
+                              forceOverlay
+                              hideBackground
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </section>
