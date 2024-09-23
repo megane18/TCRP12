@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import "react-quill/dist/quill.snow.css";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
-import Header from "./Header";
 import "react-datepicker/dist/react-datepicker.css";
-import { FaInstagram, FaYoutube, FaLinkedin, FaFacebook } from "react-icons/fa";
 
 const RequestForm = () => {
   const [name, setName] = useState("");

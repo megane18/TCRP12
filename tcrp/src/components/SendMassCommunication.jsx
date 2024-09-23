@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import "react-quill/dist/quill.snow.css";
 import "react-dropdown/style.css";
 import { XIcon } from "lucide-react";
 import Editor from "./Editor";
@@ -13,8 +12,6 @@ const SendMassCommunication = ({ close }) => {
   const [channel, setChannel] = useState([]);
   const [file, setFile] = useState(null);
 
-  const [range, setRange] = useState();
-  const [lastChange, setLastChange] = useState();
   const [readOnly, setReadOnly] = useState(false);
   const quillRef = useRef();
 
