@@ -222,7 +222,7 @@ const CRPWebsite = () => {
                 }
               }}
               >
-            <h2 className="text-xl font-bold">Sign Up for {featuredEvent.title}</h2>
+            <h2 className="text-xl font-bold">Sign Up for {featuredEvent.name}</h2>
             <p>Please enter your details to sign up for the event.</p>
             <input
               type="text"
@@ -240,8 +240,9 @@ const CRPWebsite = () => {
               className="w-full p-2 mt-4 border rounded"
             />
             <input
-              type="phone"
-              placeholder="Your phone number"
+              type="tel"
+              pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+              placeholder="Your Phone number"
               className="w-full p-2 mt-4 border rounded"
             />
             <button onClick={submitSignEvent}
