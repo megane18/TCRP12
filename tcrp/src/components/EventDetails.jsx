@@ -37,13 +37,13 @@ const EventDetails = () => {
         },
         {
             id: 2,
-            username: "Emily Carson",
+            username: "Michael Thompson",
             comment: "Sounds like a great event, I'll be there.",
             photo: person2
         },
         {
             id: 3,
-            username: "Michael Thompson",
+            username: "Mia Carson",
             comment: "Excited to attend and learn from the amazing speakers. Can't wait!",
             photo: person3
         },
